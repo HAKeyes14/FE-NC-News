@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  border: 1px solid red;
 }
 
 .App-logo {
@@ -19,4 +20,25 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.homepage {
+  display: grid;
+  grid-template-areas: "articlesList topicsList";
+  grid-template-columns: 2fr 1fr;
+  border: 1px solid red;
+}
+
+.header {
+  border: 1px solid red;
+}
+
+.articlesList {
+  grid-area: articlesList;
+  border: 1px solid red;
+}
+
+.topicsList {
+  grid-area: topicsList;
+  border: 1px solid red;
 }
