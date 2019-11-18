@@ -29,3 +29,13 @@ export const getArticleById = id => {
       return data.article;
     });
 };
+
+export const getCommentsByArticleId = id => {
+  return axios
+    .get(`https://nc-news-hkeyes.herokuapp.com/api/articles/${id}/comments`, {
+      headers: { Authorization: `Bearer test` }
+    })
+    .then(({ data }) => {
+      return data.comments;
+    });
+};

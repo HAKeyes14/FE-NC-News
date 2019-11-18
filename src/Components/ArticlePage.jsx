@@ -6,24 +6,31 @@ import { getArticleById } from "../api";
 
 class ArticlePage extends Component {
   state = {
-    article: {}
+    article: {},
+    isLoading: true
   };
 
   componentDidMount() {
     const { id } = this.props;
     getArticleById(id).then(article => {
-      this.setState({ article });
+      this.setState({ article, isLoading: false });
     });
   }
 
   render() {
-    const { article } = this.state;
+    const { article, isLoading } = this.state;
     return (
       <main>
-        <ArticleDisplayer article={article} />
-        <Router>
-          <CommentsList path="/comments" article={article} />
-        </Router>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <div>
+            <ArticleDisplayer article={article} />
+            <Router>
+              <CommentsList path="/comments" id={article.article_id} />
+            </Router>
+          </div>
+        )}
       </main>
     );
   }
