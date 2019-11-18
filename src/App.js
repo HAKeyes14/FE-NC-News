@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import { Router } from "@reach/router";
 import Homepage from "./Components/Homepage";
+import ArticlePage from "./Components/ArticlePage";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <Router>
         <Homepage path="/" />
+        <ArticlePage path="/article/:id" />
       </Router>
     </div>
   );

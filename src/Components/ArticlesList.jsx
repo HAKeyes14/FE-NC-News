@@ -4,24 +4,30 @@ import { getArticles } from "../api";
 
 class ArticlesList extends Component {
   state = {
-    articles: []
+    articles: [],
+    isLoading: true
   };
 
   componentDidMount() {
     getArticles().then(articles => {
-      this.setState({ articles });
+      this.setState({ articles, isLoading: false });
     });
   }
 
   render() {
+    const { articles, isLoading } = this.state;
     return (
       <div className="articlesList">
         <h2>Top Articles</h2>
-        <ul>
-          {this.state.articles.map(article => (
-            <ArticleCard article={article} key={article.title} />
-          ))}
-        </ul>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <ul>
+            {articles.map(article => (
+              <ArticleCard article={article} key={article.title} />
+            ))}
+          </ul>
+        )}
       </div>
     );
   }
