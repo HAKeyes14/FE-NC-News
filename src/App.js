@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Router>
         <Homepage path="/" />
-        <ArticlePage path="/article/:id" />
+        <ArticlePage path="/article/:id/*" />
       </Router>
     </div>
   );
