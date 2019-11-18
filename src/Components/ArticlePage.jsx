@@ -2,20 +2,19 @@ import React, { Component } from "react";
 import ArticleDisplayer from "./ArticleDisplayer";
 import CommentsList from "./CommentsList";
 import { Router } from "@reach/router";
+import { getArticleById } from "../api";
 
 class ArticlePage extends Component {
   state = {
-    article: {
-      title: "Seafood substitutions are increasing",
-      topic: "cooking",
-      author: "weegembump",
-      body: "Text from the article..",
-      created_at: 1527695953341,
-      votes: 0,
-      comment_count: 3,
-      article_id: 1
-    }
+    article: {}
   };
+
+  componentDidMount() {
+    const { id } = this.props;
+    getArticleById(id).then(article => {
+      this.setState({ article });
+    });
+  }
 
   render() {
     const { article } = this.state;
