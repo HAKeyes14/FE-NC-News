@@ -31,10 +31,11 @@ export const getArticleById = id => {
     });
 };
 
-export const getCommentsByArticleId = id => {
+export const getCommentsByArticleId = (id, sort_by) => {
   return axios
     .get(`https://nc-news-hkeyes.herokuapp.com/api/articles/${id}/comments`, {
-      headers: { Authorization: `Bearer test` }
+      headers: { Authorization: `Bearer test` },
+      params: { sort_by }
     })
     .then(({ data }) => {
       return data.comments;

@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { getCommentsByArticleId } from "../api";
 import CommentCard from "./CommentCard";
 import CommentAdder from "./CommentAdder";
+import CommentSorter from "./CommentSorter";
 
 class CommentsList extends Component {
   state = {
     comments: [],
-    isLoading: true
+    isLoading: true,
+    sort_by: "created_at"
   };
 
   componentDidMount() {
@@ -14,6 +16,16 @@ class CommentsList extends Component {
     getCommentsByArticleId(id).then(comments => {
       this.setState({ comments, isLoading: false });
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { id } = this.props;
+    const { sort_by } = this.state;
+    if (prevState.sort_by !== sort_by) {
+      getCommentsByArticleId(id, sort_by).then(comments => {
+        this.setState({ comments, isLoading: false });
+      });
+    }
   }
 
   addComment = comment => {
@@ -31,6 +43,10 @@ class CommentsList extends Component {
     });
   };
 
+  sortComments = sort_by => {
+    this.setState({ sort_by });
+  };
+
   render() {
     const { comments, isLoading } = this.state;
 
@@ -38,6 +54,7 @@ class CommentsList extends Component {
       <div>
         <CommentAdder id={this.props.id} addComment={this.addComment} />
         <h4>Comments:</h4>
+        <CommentSorter sortComments={this.sortComments} />
         {isLoading ? (
           <p>Loading...</p>
         ) : (
