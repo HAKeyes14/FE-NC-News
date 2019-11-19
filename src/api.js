@@ -39,3 +39,20 @@ export const getCommentsByArticleId = id => {
       return data.comments;
     });
 };
+
+export const postComment = (id, body) => {
+  return axios
+    .post(
+      `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}/comments`,
+      {
+        body,
+        username: "jessjelly"
+      },
+      {
+        headers: { Authorization: `Bearer test` }
+      }
+    )
+    .then(({ data }) => {
+      return data.comment;
+    });
+};

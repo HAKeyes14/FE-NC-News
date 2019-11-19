@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getCommentsByArticleId } from "../api";
 import CommentCard from "./CommentCard";
+import CommentAdder from "./CommentAdder";
 
 class CommentsList extends Component {
   state = {
@@ -15,11 +16,18 @@ class CommentsList extends Component {
     });
   }
 
+  addComment = comment => {
+    this.setState(currentState => {
+      return { comments: [comment, ...currentState.comments] };
+    });
+  };
+
   render() {
     const { comments, isLoading } = this.state;
 
     return (
       <div>
+        <CommentAdder id={this.props.id} addComment={this.addComment} />
         <h4>Comments:</h4>
         {isLoading ? (
           <p>Loading...</p>
