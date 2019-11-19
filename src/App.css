@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  border: 1px solid red;
 }
 
 .App-logo {
@@ -26,19 +25,68 @@
   display: grid;
   grid-template-areas: "articlesList topicsList";
   grid-template-columns: 2fr 1fr;
-  border: 1px solid red;
-}
-
-.header {
-  border: 1px solid red;
 }
 
 .articlesList {
   grid-area: articlesList;
-  border: 1px solid red;
 }
 
 .topicsList {
   grid-area: topicsList;
-  border: 1px solid red;
+}
+
+.list {
+  list-style-type: none;
+}
+
+.articleCard {
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 10px;
+  display: grid;
+  grid-template-areas:
+    "topic author date"
+    "title title title"
+    "votes comments delete";
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.title {
+  grid-area: title;
+}
+
+.topic {
+  grid-area: topic;
+  font-size: x-small;
+  justify-content: left;
+}
+
+.comments {
+  grid-area: comments;
+}
+
+.votes {
+  grid-area: votes;
+}
+
+.delete {
+  grid-area: delete;
+}
+
+.date {
+  grid-area: date;
+  font-size: x-small;
+}
+
+.author {
+  font-size: x-small;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.userIcon {
+  margin-top: 6px;
+  margin-left: 4px;
 }

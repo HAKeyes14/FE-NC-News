@@ -10,22 +10,29 @@ class UserDisplayer extends Component {
   componentDidMount() {
     const { username } = this.props;
     getUserById(username).then(user => {
-      this.setState({ user });
+      this.setState({ user, isLoading: false });
     });
   }
 
   render() {
-    const { user } = this.state;
+    const { user, isLoading } = this.state;
     return (
-      <>
-        <img
-          src={user.avatar_url}
-          alt="user avatar"
-          height="40"
-          width="40"
-        ></img>
-        <p>{user.username}</p>
-      </>
+      <section className="author">
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <p className="username">Posted by: {user.username}</p>
+            <img
+              src={user.avatar_url}
+              alt="user avatar"
+              height="20"
+              width="20"
+              className="userIcon"
+            ></img>
+          </>
+        )}
+      </section>
     );
   }
 }

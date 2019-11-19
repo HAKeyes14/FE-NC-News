@@ -1,5 +1,6 @@
 import React from "react";
 import { deleteComment } from "../api";
+import UserDisplayer from "./UserDisplayer";
 
 const CommentCard = ({ comment, removeComment }) => {
   const handleClick = () => {
@@ -13,7 +14,7 @@ const CommentCard = ({ comment, removeComment }) => {
   return (
     <li>
       <p>{new Date(comment.created_at).toLocaleString()}</p>
-      <p>{comment.author}</p>
+      <UserDisplayer username={comment.author} />
       <p>{comment.body}</p>
       <p>{comment.votes}</p>
       <button onClick={handleClick}>Delete</button>

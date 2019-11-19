@@ -13,16 +13,20 @@ const ArticleCard = ({ article, removeArticle }) => {
   };
 
   return (
-    <li>
-      <Link to={`/article/${article.article_id}`}>
+    <li className="articleCard">
+      <Link to={`/article/${article.article_id}`} className="title">
         <h3>{article.title}</h3>
       </Link>
-      <p>{article.topic}</p>
+      <Link to={`/topics/${article.topic}`} className="topic">
+        <p>nc/{article.topic}</p>
+      </Link>
       <UserDisplayer username={article.author} />
-      <p>Comments: {article.comment_count}</p>
-      <p>Votes: {article.votes}</p>
-      <p>{new Date(article.created_at).toLocaleString()}</p>
-      <button onClick={handleClick}>Delete</button>
+      <p className="comments">Comments: {article.comment_count}</p>
+      <p className="votes">Votes: {article.votes}</p>
+      <p className="date">{new Date(article.created_at).toLocaleString()}</p>
+      <button className="delete" onClick={handleClick}>
+        Delete
+      </button>
     </li>
   );
 };
