@@ -22,6 +22,15 @@ class CommentsList extends Component {
     });
   };
 
+  removeComment = comment_id => {
+    this.setState(currentState => {
+      const filteredComments = currentState.comments.filter(
+        comment => comment.comment_id !== comment_id
+      );
+      return { comments: filteredComments };
+    });
+  };
+
   render() {
     const { comments, isLoading } = this.state;
 
@@ -34,7 +43,11 @@ class CommentsList extends Component {
         ) : (
           <ul>
             {comments.map(comment => (
-              <CommentCard comment={comment} key={comment.comment_id} />
+              <CommentCard
+                comment={comment}
+                key={comment.comment_id}
+                removeComment={this.removeComment}
+              />
             ))}
           </ul>
         )}

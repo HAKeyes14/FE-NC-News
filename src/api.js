@@ -57,3 +57,12 @@ export const postComment = (id, body) => {
       return data.comment;
     });
 };
+
+export const deleteComment = id => {
+  return axios.delete(
+    `https://nc-news-hkeyes.herokuapp.com/api/comments/${id}`,
+    {
+      headers: { Authorization: `Bearer test` }
+    }
+  );
+};

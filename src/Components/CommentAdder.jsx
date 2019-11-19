@@ -30,6 +30,7 @@ class CommentAdder extends Component {
             cols={80}
             placeholder="Write new comment here"
             maxLength={2000}
+            required
             onChange={this.handleChange}
             value={this.state.input}
           />
