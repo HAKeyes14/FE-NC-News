@@ -1,78 +1,77 @@
 import axios from "axios";
 
-export const getArticles = params => {
-  return axios
-    .get("https://nc-news-hkeyes.herokuapp.com/api/articles", {
+export const getArticles = async params => {
+  const { data } = await axios.get(
+    "https://nc-news-hkeyes.herokuapp.com/api/articles",
+    {
       headers: { Authorization: `Bearer test` },
       params
-    })
-    .then(({ data }) => {
-      return data.articles;
-    });
+    }
+  );
+  return data.articles;
 };
 
-export const getTopics = () => {
-  return axios
-    .get("https://nc-news-hkeyes.herokuapp.com/api/topics", {
-      headers: { Authorization: `Bearer test` }
-    })
-    .then(({ data }) => {
-      return data.topics;
-    });
-};
-
-export const getArticleById = id => {
-  return axios
-    .get(`https://nc-news-hkeyes.herokuapp.com/api/articles/${id}`, {
-      headers: { Authorization: `Bearer test` }
-    })
-    .then(({ data }) => {
-      return data.article;
-    });
-};
-
-export const getCommentsByArticleId = (id, sort_by) => {
-  return axios
-    .get(`https://nc-news-hkeyes.herokuapp.com/api/articles/${id}/comments`, {
-      headers: { Authorization: `Bearer test` },
-      params: { sort_by }
-    })
-    .then(({ data }) => {
-      return data.comments;
-    });
-};
-
-export const postComment = (id, body) => {
-  return axios
-    .post(
-      `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}/comments`,
-      {
-        body,
-        username: "jessjelly"
-      },
-      {
-        headers: { Authorization: `Bearer test` }
-      }
-    )
-    .then(({ data }) => {
-      return data.comment;
-    });
-};
-
-export const deleteComment = id => {
-  return axios.delete(
-    `https://nc-news-hkeyes.herokuapp.com/api/comments/${id}`,
+export const getTopics = async () => {
+  const { data } = await axios.get(
+    "https://nc-news-hkeyes.herokuapp.com/api/topics",
     {
       headers: { Authorization: `Bearer test` }
     }
   );
+  return data.topics;
 };
 
-export const deleteArticle = id => {
-  return axios.delete(
+export const getArticleById = async id => {
+  const { data } = await axios.get(
     `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}`,
     {
       headers: { Authorization: `Bearer test` }
     }
   );
+  return data.article;
+};
+
+export const getCommentsByArticleId = async (id, sort_by) => {
+  const { data } = await axios.get(
+    `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}/comments`,
+    {
+      headers: { Authorization: `Bearer test` },
+      params: { sort_by }
+    }
+  );
+  return data.comments;
+};
+
+export const postComment = async (id, body) => {
+  const { data } = await axios.post(
+    `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}/comments`,
+    {
+      body,
+      username: "jessjelly"
+    },
+    {
+      headers: { Authorization: `Bearer test` }
+    }
+  );
+  return data.comment;
+};
+
+export const deleteComment = async id => {
+  const data = await axios.delete(
+    `https://nc-news-hkeyes.herokuapp.com/api/comments/${id}`,
+    {
+      headers: { Authorization: `Bearer test` }
+    }
+  );
+  return data.status;
+};
+
+export const deleteArticle = async id => {
+  const data = await axios.delete(
+    `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}`,
+    {
+      headers: { Authorization: `Bearer test` }
+    }
+  );
+  return data.status;
 };
