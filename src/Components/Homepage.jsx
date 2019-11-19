@@ -1,11 +1,11 @@
 import React from "react";
-import ArticlesList from "./ArticlesList";
 import TopicsList from "./TopicsList";
+import ArticlesDisplayer from "./ArticlesDisplayer";
 
 const Homepage = () => {
   return (
     <main className="homepage">
-      <ArticlesList />
+      <ArticlesDisplayer />
       <TopicsList />
     </main>
   );

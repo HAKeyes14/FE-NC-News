@@ -9,16 +9,25 @@ class ArticlesList extends Component {
   };
 
   componentDidMount() {
-    getArticles().then(articles => {
+    const { params } = this.props;
+    getArticles(params).then(articles => {
       this.setState({ articles, isLoading: false });
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { params } = this.props;
+    if (prevProps.params !== params) {
+      getArticles(params).then(articles => {
+        this.setState({ articles, isLoading: false });
+      });
+    }
   }
 
   render() {
     const { articles, isLoading } = this.state;
     return (
-      <div className="articlesList">
-        <h2>Top Articles</h2>
+      <div>
         {isLoading ? (
           <p>Loading...</p>
         ) : (

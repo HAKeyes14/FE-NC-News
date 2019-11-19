@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { postComment } from "../api";
-import { addComment } from "@babel/types";
 
 class CommentAdder extends Component {
   state = {

@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export const getArticles = () => {
+export const getArticles = params => {
   return axios
     .get("https://nc-news-hkeyes.herokuapp.com/api/articles", {
-      headers: { Authorization: `Bearer test` }
+      headers: { Authorization: `Bearer test` },
+      params
     })
     .then(({ data }) => {
       return data.articles;
