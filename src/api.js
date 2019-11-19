@@ -75,3 +75,13 @@ export const deleteArticle = async id => {
   );
   return data.status;
 };
+
+export const getUserById = async username => {
+  const { data } = await axios.get(
+    `https://nc-news-hkeyes.herokuapp.com/api/users/${username}`,
+    {
+      headers: { Authorization: `Bearer test` }
+    }
+  );
+  return data.user;
+};
