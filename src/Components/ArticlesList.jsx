@@ -24,6 +24,15 @@ class ArticlesList extends Component {
     }
   }
 
+  removeArticle = article_id => {
+    this.setState(currentState => {
+      const filteredArticles = currentState.articles.filter(article => {
+        return article.article_id !== article_id;
+      });
+      return { articles: filteredArticles };
+    });
+  };
+
   render() {
     const { articles, isLoading } = this.state;
     return (
@@ -33,7 +42,11 @@ class ArticlesList extends Component {
         ) : (
           <ul>
             {articles.map(article => (
-              <ArticleCard article={article} key={article.title} />
+              <ArticleCard
+                article={article}
+                key={article.title}
+                removeArticle={this.removeArticle}
+              />
             ))}
           </ul>
         )}
