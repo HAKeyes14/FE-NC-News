@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import ArticleDisplayer from "./ArticleDisplayer";
 import CommentsList from "./CommentsList";
-import { Router } from "@reach/router";
 import { getArticleById } from "../api";
 
 class ArticlePage extends Component {
   state = {
     article: {},
-    isLoading: true
+    isLoading: true,
+    showComments: false
   };
 
   componentDidMount() {
@@ -17,8 +17,14 @@ class ArticlePage extends Component {
     });
   }
 
+  handleClick = () => {
+    this.setState(currentState => {
+      return { showComments: !currentState.showComments };
+    });
+  };
+
   render() {
-    const { article, isLoading } = this.state;
+    const { article, isLoading, showComments } = this.state;
     return (
       <main>
         {isLoading ? (
@@ -26,9 +32,12 @@ class ArticlePage extends Component {
         ) : (
           <div>
             <ArticleDisplayer article={article} />
-            <Router>
+            <button onClick={this.handleClick}>
+              {showComments ? <p>Hide Comments</p> : <p>Show Comments</p>}
+            </button>
+            {showComments && (
               <CommentsList path="/comments" id={article.article_id} />
-            </Router>
+            )}
           </div>
         )}
       </main>

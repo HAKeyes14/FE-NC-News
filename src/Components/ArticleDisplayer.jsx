@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "@reach/router";
 
 const ArticleDisplayer = ({ article }) => {
   return (
@@ -8,9 +7,7 @@ const ArticleDisplayer = ({ article }) => {
       <p>{article.topic}</p>
       <p>{article.body}</p>
       <p>Votes: {article.votes}</p>
-      <Link to={`/article/${article.article_id}/comments`}>
-        <p>Comments: {article.comment_count}</p>
-      </Link>
+      <p>Comments: {article.comment_count}</p>
     </div>
   );
 };
