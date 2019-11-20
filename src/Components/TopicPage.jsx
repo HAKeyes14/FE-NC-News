@@ -1,34 +1,25 @@
 import React, { Component } from "react";
-import { getArticles } from "../api";
-import ArticleCard from "./ArticleCard";
+import ArticlesList from "./ArticlesList";
+import ArticleSorter from "./ArticleSorter";
 
 class TopicPage extends Component {
   state = {
-    articles: {},
-    isLoading: true
+    sort_by: "comment_count",
+    order: "desc"
   };
 
-  componentDidMount() {
-    const { slug } = this.props;
-    const params = { topic: slug };
-    getArticles(params).then(articles => {
-      this.setState({ articles, isLoading: false });
-    });
-  }
-
+  sortArticles = (sort_by, order) => {
+    this.setState({ sort_by, order });
+  };
   render() {
-    const { articles, isLoading } = this.state;
-    if (isLoading) return <p>Loading...</p>;
+    const { slug } = this.props;
+    const { sort_by, order } = this.state;
     return (
-      <ul>
-        {articles.map(article => (
-          <ArticleCard
-            article={article}
-            key={article.title}
-            removeArticle={this.removeArticle}
-          />
-        ))}
-      </ul>
+      <>
+        <h2 className="topicPageTitle">nc/{slug}</h2>
+        <ArticleSorter sortArticles={this.sortArticles} />
+        <ArticlesList params={{ slug, sort_by, order }} />
+      </>
     );
   }
 }

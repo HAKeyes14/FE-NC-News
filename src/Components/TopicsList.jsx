@@ -19,11 +19,11 @@ class TopicsList extends Component {
 
     return (
       <div className="topicsList">
-        <h2>Topics</h2>
+        <h2 className="topicsTitle">Topics</h2>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <ul>
+          <ul className="list-topic">
             {topics.map(topic => (
               <TopicCard topic={topic} key={topic.slug} />
             ))}

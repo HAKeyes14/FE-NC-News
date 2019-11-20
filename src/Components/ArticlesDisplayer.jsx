@@ -16,7 +16,7 @@ class ArticlesDisplayer extends Component {
     const { sort_by, order } = this.state;
     return (
       <div className="articlesList">
-        <h2>Top Articles</h2>
+        <h2 className="articlesTitle">Top Articles</h2>
         <ArticleSorter sortArticles={this.sortArticles} />
         <ArticlesList
           params={{

@@ -40,7 +40,7 @@ class ArticlesList extends Component {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <ul className="list">
+          <ul className="list-articles">
             {articles.map(article => (
               <ArticleCard
                 article={article}

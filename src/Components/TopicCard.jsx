@@ -3,11 +3,11 @@ import { Link } from "@reach/router";
 
 const TopicCard = ({ topic }) => {
   return (
-    <li>
-      <Link to={`/topics/${topic.slug}`}>
-        <h3>{topic.slug}</h3>
+    <li className="topicCard">
+      <Link to={`/topics/${topic.slug}`} className="topicLink">
+        <h3 className="topicCardTitle">nc/{topic.slug}</h3>
+        <p className="topicDescription">{topic.description}</p>
       </Link>
-      <p>{topic.description}</p>
     </li>
   );
 };

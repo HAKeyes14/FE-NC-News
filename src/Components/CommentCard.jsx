@@ -17,7 +17,9 @@ const CommentCard = ({ comment, removeComment }) => {
       <UserDisplayer username={comment.author} />
       <p>{comment.body}</p>
       <p>{comment.votes}</p>
-      <button onClick={handleClick}>Delete</button>
+      {comment.author === "jessjelly" && (
+        <button onClick={handleClick}>Delete</button>
+      )}
     </li>
   );
 };

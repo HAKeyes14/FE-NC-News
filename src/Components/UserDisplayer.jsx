@@ -29,7 +29,7 @@ class UserDisplayer extends Component {
               height="20"
               width="20"
               className="userIcon"
-            ></img>
+            />
           </>
         )}
       </section>

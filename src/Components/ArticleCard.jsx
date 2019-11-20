@@ -24,9 +24,11 @@ const ArticleCard = ({ article, removeArticle }) => {
       <p className="comments">Comments: {article.comment_count}</p>
       <p className="votes">Votes: {article.votes}</p>
       <p className="date">{new Date(article.created_at).toLocaleString()}</p>
-      <button className="delete" onClick={handleClick}>
-        Delete
-      </button>
+      {article.author === "jessjelly" && (
+        <button className="delete" onClick={handleClick}>
+          Delete
+        </button>
+      )}
     </li>
   );
 };

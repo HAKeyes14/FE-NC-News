@@ -21,16 +21,16 @@ class ArticleSorter extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Sort by:
+      <form className="articleSort" onSubmit={this.handleSubmit}>
+        <label className="dropdown">
+          Sort by:{" "}
           <select onChange={this.handleChange}>
             <option value={"votes,desc"}>Top Rated</option>
             <option value={"created_at,desc"}>New</option>
             <option value={"comment_count,desc"}>Most Commented</option>
           </select>
         </label>
-        <button>Sort</button>
+        <button className="sortButton">Sort</button>
       </form>
     );
   }
