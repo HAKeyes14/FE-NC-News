@@ -16,21 +16,20 @@ class UserDisplayer extends Component {
 
   render() {
     const { user, isLoading } = this.state;
+    const { username } = this.props;
     return (
       <section className="author">
+        <p className="username">Posted by: {username}</p>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <>
-            <p className="username">Posted by: {user.username}</p>
-            <img
-              src={user.avatar_url}
-              alt="user avatar"
-              height="20"
-              width="20"
-              className="userIcon"
-            />
-          </>
+          <img
+            src={user.avatar_url}
+            alt="user avatar"
+            height="20"
+            width="20"
+            className="userIcon"
+          />
         )}
       </section>
     );

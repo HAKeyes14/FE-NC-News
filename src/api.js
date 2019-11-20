@@ -85,3 +85,16 @@ export const getUserById = async username => {
   );
   return data.user;
 };
+
+export const updateVotes = async (commArt, id, votes) => {
+  const { data } = await axios.patch(
+    `https://nc-news-hkeyes.herokuapp.com/api/${commArt}/${id}`,
+    {
+      inc_votes: votes
+    },
+    {
+      headers: { Authorization: `Bearer test` }
+    }
+  );
+  return data;
+};

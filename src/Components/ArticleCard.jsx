@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 import { deleteArticle } from "../api";
 import UserDisplayer from "./UserDisplayer";
+import Voter from "./Voter";
 
 const ArticleCard = ({ article, removeArticle }) => {
   const handleClick = () => {
@@ -22,7 +23,7 @@ const ArticleCard = ({ article, removeArticle }) => {
       </Link>
       <UserDisplayer username={article.author} />
       <p className="comments">Comments: {article.comment_count}</p>
-      <p className="votes">Votes: {article.votes}</p>
+      <Voter votes={article.votes} id={article.article_id} commArt="articles" />
       <p className="date">{new Date(article.created_at).toLocaleString()}</p>
       {article.author === "jessjelly" && (
         <button className="delete" onClick={handleClick}>

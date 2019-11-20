@@ -1,7 +1,12 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 const Header = () => {
-  return <h1 className="header">NC News</h1>;
+  return (
+    <Link to="/" className="header">
+      <h1>NC News</h1>
+    </Link>
+  );
 };
 
 export default Header;

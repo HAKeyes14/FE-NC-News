@@ -60,8 +60,8 @@
   display: grid;
   grid-template-areas:
     "topic topic author author author author author date date date"
-    "title title title title title title title title delete delete"
-    "votes votes votes votes votes comments comments comments comments comments";
+    "title title title title title title title title votes votes"
+    "comments comments comments comments comments delete delete delete votes votes";
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: 30px 70px 25px;
   background-color: white;
@@ -77,7 +77,7 @@
   color: black;
   text-align: left;
   font-size: 12px;
-  border-right: 0.5px solid gray;
+  border-bottom: 0.5px solid gray;
   padding: 0px 20px;
   display: flex;
   flex-direction: column;
@@ -112,7 +112,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-top: 0.5px solid gray;
+  border-right: 0.5px solid gray;
   margin: 0;
 }
 
@@ -122,24 +122,66 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-top: 0.5px solid gray;
-  border-right: 0.5px solid gray;
+  border-left: 0.5px solid gray;
+  margin: 0;
+}
+
+.voteButton {
+  height: 20px;
+  width: 60px;
+  margin: auto;
+  padding: 0;
+  text-align: center;
+  border: 2px solid #88ccff;
+  border-radius: 3px;
+  font-size: 6px;
+}
+
+.voteButton:hover {
+  background-color: rgb(0, 118, 208);
+  color: white;
+}
+
+.voteButton:disabled {
+  background-color: rgb(53, 60, 65);
+  border-color: rgb(0, 118, 208);
+  color: white;
+}
+
+.voteButton:active {
+  background-color: rgb(0, 43, 75);
+}
+
+.voteButton:focus {
+  outline-style: none;
+}
+
+.voteNum {
   margin: 0;
 }
 
 .delete {
   grid-area: delete;
   height: 20px;
-  width: 50px;
+  width: 80px;
   margin: auto;
   text-align: center;
   border: 2px solid #88ccff;
   border-radius: 3px;
+  background-color: red;
 }
 
 .delete:hover {
   background-color: rgb(0, 118, 208);
   color: white;
+}
+
+.delete:active {
+  background-color: rgb(0, 43, 75);
+}
+
+.delete:focus {
+  outline-style: none;
 }
 
 .date {
@@ -228,9 +270,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 40px;
+  font-size: 25px;
   text-align: left;
   padding-left: 20px;
+  text-decoration: none;
 }
 
 .topicsTitle {
@@ -316,4 +359,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.errorMsg {
+  position: fixed;
+  margin: auto;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  width: 250px;
+  height: 40px;
+  border: 3px solid rgb(128, 37, 37);
+  border-radius: 5px;
+  background-color: rgba(255, 97, 97, 0.735);
+  font-size: medium;
+  font-weight: bold;
 }
