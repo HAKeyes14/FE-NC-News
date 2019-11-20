@@ -12,16 +12,16 @@ class ArticleSorter extends Component {
     this.setState({ sort_by: params[0], order: params[1] });
   };
 
-  handleSubmit = event => {
-    const { sortArticles } = this.props;
-    const { sort_by, order } = this.state;
-    event.preventDefault();
-    sortArticles(sort_by, order);
-  };
+  componentDidUpdate(prevProps, prevState) {
+    const { order, sort_by } = this.state;
+    if (prevState.order !== order || prevState.sort_by !== sort_by) {
+      this.props.sortArticles(sort_by, order);
+    }
+  }
 
   render() {
     return (
-      <form className="articleSort" onSubmit={this.handleSubmit}>
+      <form className="articleSort">
         <label className="dropdown">
           Sort by:{" "}
           <select onChange={this.handleChange}>
@@ -30,7 +30,6 @@ class ArticleSorter extends Component {
             <option value={"comment_count,desc"}>Most Commented</option>
           </select>
         </label>
-        <button className="sortButton">Sort</button>
       </form>
     );
   }

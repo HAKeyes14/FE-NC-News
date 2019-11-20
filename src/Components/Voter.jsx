@@ -48,6 +48,7 @@ class Voter extends Component {
 
   render() {
     const { votes } = this.props;
+    const name = this.props.name || "";
     const {
       votesAdded,
       showError,
@@ -56,7 +57,7 @@ class Voter extends Component {
       error
     } = this.state;
     return (
-      <section className="votes">
+      <section className={`votes${name}`}>
         <button
           className="voteButton"
           onClick={() => {

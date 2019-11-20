@@ -86,7 +86,6 @@
 
 .title:hover {
   color: rgb(0, 145, 255);
-  text-decoration: underline;
 }
 
 .topic {
@@ -353,7 +352,6 @@
   border: 0.5px solid rgb(0, 102, 181);
   border-radius: 3px;
   margin: 0px 10px 10px 10px;
-  padding: 10px;
   background-color: rgb(248, 252, 255);
   font-size: small;
   display: flex;
@@ -374,4 +372,24 @@
   background-color: rgba(255, 97, 97, 0.735);
   font-size: medium;
   font-weight: bold;
+}
+
+.votesArticle {
+  background-color: red;
+}
+
+.topicArticle {
+  font-size: x-small;
+  height: 40px;
+  width: 70px;
+  margin: 0;
+  text-align: left;
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
+.topicArticle:hover {
+  color: rgb(0, 145, 255);
+  text-decoration: underline;
 }

@@ -10,16 +10,16 @@ class CommentSorter extends Component {
     this.setState({ sort_by: value });
   };
 
-  handleSubmit = event => {
-    const { sortComments } = this.props;
+  componentDidUpdate(prevProps, prevState) {
     const { sort_by } = this.state;
-    event.preventDefault();
-    sortComments(sort_by);
-  };
+    if (prevState.sort_by !== sort_by) {
+      this.props.sortComments(sort_by);
+    }
+  }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
         <label>
           Sort by:
           <select onChange={this.handleChange}>
@@ -27,7 +27,6 @@ class CommentSorter extends Component {
             <option value={"votes"}>Top Rated</option>
           </select>
         </label>
-        <button>Sort</button>
       </form>
     );
   }
