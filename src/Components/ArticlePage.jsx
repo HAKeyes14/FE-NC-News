@@ -34,6 +34,7 @@ class ArticlePage extends Component {
 
   render() {
     const { article, isLoading, showComments, err } = this.state;
+    const { loggedInUser } = this.props;
     if (err !== null) return <ErrorPage error={err} />;
     return (
       <main>
@@ -45,9 +46,14 @@ class ArticlePage extends Component {
               article={article}
               handleClick={this.handleClick}
               showComments={this.showComments}
+              loggedInUser={loggedInUser}
             />
             {showComments && (
-              <CommentsList path="/comments" id={article.article_id} />
+              <CommentsList
+                path="/comments"
+                id={article.article_id}
+                loggedInUser={loggedInUser}
+              />
             )}
           </>
         )}

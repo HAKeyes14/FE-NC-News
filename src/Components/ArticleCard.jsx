@@ -4,13 +4,11 @@ import { deleteArticle } from "../api";
 import UserDisplayer from "./UserDisplayer";
 import Voter from "./Voter";
 
-const ArticleCard = ({ article, removeArticle }) => {
+const ArticleCard = ({ article, removeArticle, loggedInUser }) => {
   const handleClick = () => {
-    if (article.author === "jessjelly") {
-      deleteArticle(article.article_id).then(() => {
-        removeArticle(article.article_id);
-      });
-    }
+    deleteArticle(article.article_id).then(() => {
+      removeArticle(article.article_id);
+    });
   };
 
   return (
@@ -25,7 +23,7 @@ const ArticleCard = ({ article, removeArticle }) => {
       <p className="comments">Comments: {article.comment_count}</p>
       <Voter votes={article.votes} id={article.article_id} commArt="articles" />
       <p className="date">{new Date(article.created_at).toLocaleString()}</p>
-      {article.author === "jessjelly" && (
+      {article.author === loggedInUser && (
         <button className="delete" onClick={handleClick}>
           Delete
         </button>

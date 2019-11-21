@@ -3,9 +3,9 @@ import { deleteComment } from "../api";
 import UserDisplayer from "./UserDisplayer";
 import Voter from "./Voter";
 
-const CommentCard = ({ comment, removeComment }) => {
+const CommentCard = ({ comment, removeComment, loggedInUser }) => {
   const handleClick = () => {
-    if (comment.author === "jessjelly") {
+    if (comment.author === loggedInUser) {
       deleteComment(comment.comment_id).then(() => {
         removeComment(comment.comment_id);
       });
@@ -20,7 +20,7 @@ const CommentCard = ({ comment, removeComment }) => {
       <UserDisplayer username={comment.author} />
       <p className="commentBody">{comment.body}</p>
       <Voter votes={comment.votes} id={comment.article_id} commArt="comments" />
-      {comment.author === "jessjelly" && (
+      {comment.author === loggedInUser && (
         <section className="commentDelete">
           <button onClick={handleClick}>Delete</button>
         </section>

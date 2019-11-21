@@ -14,11 +14,12 @@ class TopicPage extends Component {
   render() {
     const { slug } = this.props;
     const { sort_by, order } = this.state;
+
     return (
       <>
         <h2 className="topicPageTitle">nc/{slug}</h2>
         <ArticleSorter sortArticles={this.sortArticles} />
-        <ArticlesList params={{ slug, sort_by, order }} />
+        <ArticlesList params={{ topic: slug, sort_by, order }} />
       </>
     );
   }

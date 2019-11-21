@@ -49,10 +49,14 @@ class CommentsList extends Component {
 
   render() {
     const { comments, isLoading } = this.state;
-
+    const { loggedInUser } = this.props;
     return (
       <section className="commentsDisplay">
-        <CommentAdder id={this.props.id} addComment={this.addComment} />
+        <CommentAdder
+          id={this.props.id}
+          addComment={this.addComment}
+          loggedInUser={loggedInUser}
+        />
         <CommentSorter sortComments={this.sortComments} />
         {isLoading ? (
           <p>Loading...</p>
@@ -63,6 +67,7 @@ class CommentsList extends Component {
                 comment={comment}
                 key={comment.comment_id}
                 removeComment={this.removeComment}
+                loggedInUser={loggedInUser}
               />
             ))}
           </ul>

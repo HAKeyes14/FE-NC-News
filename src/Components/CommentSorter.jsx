@@ -23,8 +23,8 @@ class CommentSorter extends Component {
         <label className="commentDropdown">
           Sort by:{" "}
           <select onChange={this.handleChange}>
-            <option value={"created_at"}>New</option>
-            <option value={"votes"}>Top Rated</option>
+            <option value="created_at">New</option>
+            <option value="votes">Top Rated</option>
           </select>
         </label>
       </form>

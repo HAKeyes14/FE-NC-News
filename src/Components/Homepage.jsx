@@ -2,10 +2,10 @@ import React from "react";
 import TopicsList from "./TopicsList";
 import ArticlesDisplayer from "./ArticlesDisplayer";
 
-const Homepage = () => {
+const Homepage = ({ loggedInUser }) => {
   return (
     <main className="homepage">
-      <ArticlesDisplayer />
+      <ArticlesDisplayer loggedInUser={loggedInUser} />
       <TopicsList />
     </main>
   );

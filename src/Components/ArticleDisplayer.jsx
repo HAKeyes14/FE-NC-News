@@ -1,9 +1,21 @@
 import React from "react";
 import Voter from "./Voter";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import UserDisplayer from "./UserDisplayer";
+import { deleteArticle } from "../api";
 
-const ArticleDisplayer = ({ article, showComments, handleClick }) => {
+const ArticleDisplayer = ({
+  article,
+  showComments,
+  loggedInUser,
+  handleClick
+}) => {
+  const handleDeleteClick = () => {
+    deleteArticle(article.article_id).then(() => {
+      navigate("/");
+    });
+  };
+
   return (
     <>
       <h3 className="topicPageTitle">{article.title}</h3>
@@ -28,6 +40,11 @@ const ArticleDisplayer = ({ article, showComments, handleClick }) => {
             {showComments ? <p>Hide Comments</p> : <p>Show Comments</p>}
           </button>
         </section>
+        {article.author === loggedInUser && (
+          <button className="delete" onClick={handleDeleteClick}>
+            Delete
+          </button>
+        )}
       </div>
     </>
   );

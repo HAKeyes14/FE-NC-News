@@ -1,18 +1,26 @@
 import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "../api";
+import ErrorPage from "./ErrorPage";
 
 class ArticlesList extends Component {
   state = {
     articles: [],
-    isLoading: true
+    isLoading: true,
+    err: null
   };
 
   componentDidMount() {
     const { params } = this.props;
-    getArticles(params).then(articles => {
-      this.setState({ articles, isLoading: false });
-    });
+    getArticles(params)
+      .then(articles => {
+        this.setState({ articles, isLoading: false });
+      })
+      .catch(error => {
+        this.setState({
+          err: { status: error.response.status, msg: error.response.data.msg }
+        });
+      });
   }
 
   componentDidUpdate(prevProps) {
@@ -34,7 +42,9 @@ class ArticlesList extends Component {
   };
 
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, err } = this.state;
+    const { loggedInUser } = this.props;
+    if (err !== null) return <ErrorPage error={err} />;
     return (
       <div>
         {isLoading ? (
@@ -46,6 +56,7 @@ class ArticlesList extends Component {
                 article={article}
                 key={article.title}
                 removeArticle={this.removeArticle}
+                loggedInUser={loggedInUser}
               />
             ))}
           </ul>

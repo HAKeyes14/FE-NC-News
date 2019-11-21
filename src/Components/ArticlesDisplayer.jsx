@@ -14,6 +14,7 @@ class ArticlesDisplayer extends Component {
 
   render() {
     const { sort_by, order } = this.state;
+    const { loggedInUser } = this.props;
     return (
       <div className="articlesList">
         <h2 className="articlesTitle">Top Articles</h2>
@@ -23,6 +24,7 @@ class ArticlesDisplayer extends Component {
             sort_by,
             order
           }}
+          loggedInUser={loggedInUser}
         />
       </div>
     );

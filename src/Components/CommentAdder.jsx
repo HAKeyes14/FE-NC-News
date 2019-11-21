@@ -12,9 +12,9 @@ class CommentAdder extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { id } = this.props;
+    const { id, loggedInUser } = this.props;
     const { input } = this.state;
-    postComment(id, input).then(postedComment => {
+    postComment(id, input, loggedInUser).then(postedComment => {
       this.props.addComment(postedComment);
     });
     this.setState({ input: "" });

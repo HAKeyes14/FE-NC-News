@@ -42,12 +42,12 @@ export const getCommentsByArticleId = async (id, sort_by) => {
   return data.comments;
 };
 
-export const postComment = async (id, body) => {
+export const postComment = async (id, body, loggedInUser) => {
   const { data } = await axios.post(
     `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}/comments`,
     {
       body,
-      username: "jessjelly"
+      username: loggedInUser
     },
     {
       headers: { Authorization: `Bearer test` }
