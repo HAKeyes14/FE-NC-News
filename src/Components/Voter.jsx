@@ -5,19 +5,7 @@ class Voter extends Component {
   state = {
     votesAdded: 0,
     error: null,
-    showError: false,
-    hasDownVoted: false,
-    hasUpVoted: false
-  };
-
-  disableButtons = (currentAdded, voteNum) => {
-    if (currentAdded + voteNum === -1) {
-      this.setState({ hasDownVoted: true });
-    } else if (currentAdded + voteNum === 1) {
-      this.setState({ hasUpVoted: true });
-    } else if (currentAdded + voteNum === 0) {
-      this.setState({ hasUpVoted: false, hasDownVoted: false });
-    }
+    showError: false
   };
 
   handleClick = voteNum => {
@@ -25,7 +13,7 @@ class Voter extends Component {
     this.setState(currentState => {
       return { votesAdded: currentState.votesAdded + voteNum };
     });
-    this.disableButtons(this.state.votesAdded, voteNum);
+
     updateVotes(commArt, id, voteNum).catch(() => {
       const error = {
         status: 500,
@@ -35,9 +23,7 @@ class Voter extends Component {
         return {
           votesAdded: currentState.votesAdded - voteNum,
           error,
-          showError: true,
-          hasUpVoted: false,
-          hasDownVoted: false
+          showError: true
         };
       });
       setTimeout(() => {
@@ -49,13 +35,7 @@ class Voter extends Component {
   render() {
     const { votes } = this.props;
     const name = this.props.name || "";
-    const {
-      votesAdded,
-      showError,
-      hasUpVoted,
-      hasDownVoted,
-      error
-    } = this.state;
+    const { votesAdded, showError, error } = this.state;
     return (
       <section className={`votes${name}`}>
         <button
@@ -63,7 +43,7 @@ class Voter extends Component {
           onClick={() => {
             this.handleClick(1);
           }}
-          disabled={hasUpVoted}
+          disabled={votesAdded === 1}
         >
           UPVOTE
         </button>
@@ -73,7 +53,7 @@ class Voter extends Component {
           onClick={() => {
             this.handleClick(-1);
           }}
-          disabled={hasDownVoted}
+          disabled={votesAdded === -1}
         >
           DOWNVOTE
         </button>
