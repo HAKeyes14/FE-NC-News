@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "../api";
 import ErrorPage from "./ErrorPage";
+import PageSelector from "./PageSelector";
 
 class ArticlesList extends Component {
   state = {
@@ -9,7 +10,7 @@ class ArticlesList extends Component {
     isLoading: true,
     err: null,
     p: 1,
-    limit: 3,
+    limit: 5,
     total_count: 0
   };
 
@@ -17,6 +18,10 @@ class ArticlesList extends Component {
     this.setState(currentState => {
       return { p: currentState.p + direction };
     });
+  };
+
+  handleChange = event => {
+    this.setState({ limit: event.target.value, p: 1 });
   };
 
   componentDidMount() {
@@ -40,7 +45,11 @@ class ArticlesList extends Component {
     const { params } = this.props;
     params.p = p;
     params.limit = limit;
-    if (prevProps.params !== params || prevState.p !== p) {
+    if (
+      prevProps.params !== params ||
+      prevState.p !== p ||
+      prevState.limit !== limit
+    ) {
       getArticles(params).then(({ articles, total_count }) => {
         this.setState({ articles, total_count, isLoading: false });
       });
@@ -66,13 +75,13 @@ class ArticlesList extends Component {
           <p>Loading...</p>
         ) : (
           <>
-            {p !== 1 && (
-              <button onClick={() => this.handleClick(-1)}>Prev</button>
-            )}
-            <p>Page: {p}</p>
-            {Math.ceil(total_count / limit) !== p && (
-              <button onClick={() => this.handleClick(1)}>Next</button>
-            )}
+            <PageSelector
+              handleClick={this.handleClick}
+              handleChange={this.handleChange}
+              p={p}
+              limit={limit}
+              total_count={total_count}
+            />
             <ul className="list-articles">
               {articles.map(article => (
                 <ArticleCard
@@ -83,6 +92,13 @@ class ArticlesList extends Component {
                 />
               ))}
             </ul>
+            <PageSelector
+              handleClick={this.handleClick}
+              handleChange={this.handleChange}
+              p={p}
+              limit={limit}
+              total_count={total_count}
+            />
           </>
         )}
       </div>

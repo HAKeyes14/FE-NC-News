@@ -22,6 +22,7 @@
 }
 
 .homepage {
+  margin: 0 0 10px 0;
   display: grid;
   grid-template-areas: "articlesList topicsList";
   grid-template-columns: 2fr 1fr;
@@ -638,5 +639,72 @@
 }
 
 .login button:active {
+  background-color: rgb(0, 43, 75);
+}
+
+.pageSelector {
+  border: 0.5px solid rgb(0, 102, 181);
+  border-radius: 3px;
+  margin: 5px 10px 0px 10px;
+  background-color: rgb(248, 252, 255);
+  height: 30px;
+  display: grid;
+  grid-template-areas: "pages items";
+  grid-template-columns: 1fr 1fr;
+}
+
+.items {
+  grid-area: items;
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pages {
+  grid-area: pages;
+  border-right: 0.5px solid gray;
+  font-size: small;
+  display: grid;
+  grid-template-areas: "prev num next";
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.prev {
+  grid-area: prev;
+}
+
+.num {
+  grid-area: num;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.next {
+  grid-area: next;
+}
+
+.next,
+.prev {
+  height: 20px;
+  width: 40px;
+  margin: auto;
+  padding: 0;
+  text-align: center;
+  border: 2px solid #88ccff;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.next:hover,
+.prev:hover {
+  background-color: rgb(0, 118, 208);
+  color: white;
+}
+
+.next:active,
+.prev:active {
   background-color: rgb(0, 43, 75);
 }
