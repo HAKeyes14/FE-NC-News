@@ -14,6 +14,16 @@ class UserDisplayer extends Component {
     });
   }
 
+  handleError = () => {
+    this.setState(currentState => {
+      const url =
+        "https://icon-library.net/images/default-user-icon/default-user-icon-4.jpg";
+      const fixedUser = currentState.user;
+      fixedUser.avatar_url = url;
+      return { user: fixedUser };
+    });
+  };
+
   render() {
     const { user, isLoading } = this.state;
     const { username } = this.props;
@@ -29,6 +39,7 @@ class UserDisplayer extends Component {
             height="20"
             width="20"
             className="userIcon"
+            onError={this.handleError}
           />
         )}
       </section>

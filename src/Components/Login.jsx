@@ -18,7 +18,7 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="login" onSubmit={this.handleSubmit}>
         <label>
           Select User:{" "}
           <select onChange={this.handleChange}>

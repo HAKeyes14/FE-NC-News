@@ -19,7 +19,6 @@ class ArticlePage extends Component {
         this.setState({ article, isLoading: false });
       })
       .catch(error => {
-        console.log(error.response);
         this.setState({
           err: { status: error.response.status, msg: error.response.data.msg }
         });

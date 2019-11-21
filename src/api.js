@@ -8,7 +8,7 @@ export const getArticles = async params => {
       params
     }
   );
-  return data.articles;
+  return { articles: data.articles, total_count: data.total_count };
 };
 
 export const getTopics = async () => {
