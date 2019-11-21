@@ -1,6 +1,7 @@
 import React from "react";
 import { deleteComment } from "../api";
 import UserDisplayer from "./UserDisplayer";
+import Voter from "./Voter";
 
 const CommentCard = ({ comment, removeComment }) => {
   const handleClick = () => {
@@ -12,13 +13,17 @@ const CommentCard = ({ comment, removeComment }) => {
   };
 
   return (
-    <li>
-      <p>{new Date(comment.created_at).toLocaleString()}</p>
+    <li className="commentCard">
+      <p className="commentDate">
+        {new Date(comment.created_at).toLocaleString()}
+      </p>
       <UserDisplayer username={comment.author} />
-      <p>{comment.body}</p>
-      <p>{comment.votes}</p>
+      <p className="commentBody">{comment.body}</p>
+      <Voter votes={comment.votes} id={comment.article_id} commArt="comments" />
       {comment.author === "jessjelly" && (
-        <button onClick={handleClick}>Delete</button>
+        <section className="commentDelete">
+          <button onClick={handleClick}>Delete</button>
+        </section>
       )}
     </li>
   );

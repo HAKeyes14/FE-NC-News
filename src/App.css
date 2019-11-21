@@ -151,12 +151,11 @@
   background-color: rgb(0, 43, 75);
 }
 
-.voteButton:focus {
-  outline-style: none;
-}
-
 .voteNum {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .delete {
@@ -167,7 +166,6 @@
   text-align: center;
   border: 2px solid #88ccff;
   border-radius: 3px;
-  background-color: red;
 }
 
 .delete:hover {
@@ -177,10 +175,6 @@
 
 .delete:active {
   background-color: rgb(0, 43, 75);
-}
-
-.delete:focus {
-  outline-style: none;
 }
 
 .date {
@@ -218,26 +212,6 @@
   flex-direction: row;
   justify-content: left;
   padding-left: 20px;
-}
-
-.sortButton {
-  height: 20px;
-  margin: auto 0;
-  border: 2px solid #88ccff;
-  border-radius: 3px;
-}
-
-.sortButton:hover {
-  background-color: rgb(0, 118, 208);
-  color: white;
-}
-
-.sortButton:active {
-  background-color: rgb(0, 43, 75);
-}
-
-.sortButton:focus {
-  outline-style: none;
 }
 
 .dropdown {
@@ -323,7 +297,6 @@
 
 .topicCardTitle:hover {
   color: rgb(0, 145, 255);
-  text-decoration: underline;
 }
 
 .topicDescription {
@@ -354,9 +327,13 @@
   margin: 0px 10px 10px 10px;
   background-color: rgb(248, 252, 255);
   font-size: small;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-areas:
+    "topic author author date"
+    "body body body body"
+    "comments commentButton votes votes";
+  grid-template-rows: 30px auto 40px;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .errorMsg {
@@ -375,15 +352,23 @@
 }
 
 .votesArticle {
-  background-color: red;
+  grid-area: votes;
+  border-top: 0.5px solid gray;
+  border-left: 0.5px solid gray;
+  font-size: small;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
 }
 
 .topicArticle {
+  grid-area: topic;
   font-size: x-small;
-  height: 40px;
-  width: 70px;
-  margin: 0;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 0.5px solid gray;
   text-decoration: none;
   font-weight: bold;
   color: black;
@@ -392,4 +377,223 @@
 .topicArticle:hover {
   color: rgb(0, 145, 255);
   text-decoration: underline;
+}
+
+.dateArticle {
+  grid-area: date;
+  font-size: x-small;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  border-bottom: 0.5px solid gray;
+}
+
+.bodyArticle {
+  grid-area: body;
+  border: 2px solid #88ccff;
+  border-radius: 3px;
+  margin: 10px;
+  padding: 30px;
+  text-align: left;
+  line-height: 25px;
+}
+
+.commentsArticle {
+  grid-area: comments;
+  border-top: 0.5px solid gray;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+}
+
+.votesArticle button.voteButton {
+  margin: auto 15px;
+}
+
+.commentButton {
+  grid-area: commentButton;
+  border-top: 0.5px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.commentButton button {
+  height: 30px;
+  width: 100px;
+  margin: auto;
+  padding: 0;
+  text-align: center;
+  border: 2px solid #88ccff;
+  border-radius: 3px;
+  font-size: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.commentButton button p {
+  margin: 0;
+}
+
+.commentButton button:hover {
+  background-color: rgb(0, 118, 208);
+  color: white;
+}
+
+.commentButton button:active {
+  background-color: rgb(0, 43, 75);
+}
+
+.commentsDisplay {
+  border: 0.5px solid rgb(0, 102, 181);
+  border-radius: 3px;
+  margin: 0px 10px 10px 10px;
+  background-color: rgb(248, 252, 255);
+  padding: 10px 5px;
+}
+
+.commentAdder {
+  margin: 10px 5px;
+  border: 2px solid #88ccff;
+  border-radius: 3px;
+  padding: 5px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: small;
+}
+
+.textbox {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  margin: 10px 0px;
+}
+
+.postButton {
+  height: 30px;
+  width: 100px;
+  margin: auto;
+  padding: 0;
+  text-align: center;
+  border: 2px solid #88ccff;
+  border-radius: 3px;
+  font-size: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.postButton:hover {
+  background-color: rgb(0, 118, 208);
+  color: white;
+}
+
+.postButton:active {
+  background-color: rgb(0, 43, 75);
+}
+
+.commentSort {
+  border: 0.5px solid rgb(0, 102, 181);
+  border-radius: 3px;
+  margin: 10px 5px;
+  background-color: white;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding-left: 20px;
+}
+
+.commentDropdown {
+  margin: auto 40px auto 0px;
+  font-size: 12px;
+}
+
+.commentList {
+  border: 0.5px solid rgb(0, 102, 181);
+  border-radius: 3px;
+  margin: 10px 5px;
+  padding: 0;
+}
+
+.commentCard {
+  border: 2px solid #88ccff;
+  border-radius: 3px;
+  margin: 10px;
+  display: grid;
+  grid-template-areas:
+    "author date"
+    "body body"
+    "votes votes"
+    "delete delete";
+  grid-template-rows: 30px auto 30px auto;
+  grid-template-columns: 1fr 1fr;
+  background-color: white;
+}
+
+.commentDate {
+  grid-area: date;
+  font-size: x-small;
+  border-bottom: 0.5px solid gray;
+  border-left: 0.5px solid gray;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.commentAuthor {
+  grid-area: author;
+}
+
+.commentBody {
+  grid-area: body;
+  text-align: left;
+  padding: 30px;
+  margin: 0;
+  line-height: 20px;
+  font-size: small;
+}
+
+.commentCard section.votes {
+  border-top: 0.5px solid gray;
+  border-left: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.commentCard section.votes button.voteButton {
+  margin: auto 20px;
+}
+
+.commentDelete {
+  grid-area: delete;
+  height: 40px;
+  border-top: 0.5px solid gray;
+}
+
+.commentDelete button {
+  height: 30px;
+  width: 80px;
+  margin: auto;
+  text-align: center;
+  border: 2px solid #88ccff;
+  border-radius: 3px;
+  margin: 5px;
+}
+
+.commentDelete button:hover {
+  background-color: rgb(0, 118, 208);
+  color: white;
+}
+
+.commentDelete button:active {
+  background-color: rgb(0, 43, 75);
 }

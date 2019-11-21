@@ -19,9 +19,9 @@ class CommentSorter extends Component {
 
   render() {
     return (
-      <form>
-        <label>
-          Sort by:
+      <form className="commentSort">
+        <label className="commentDropdown">
+          Sort by:{" "}
           <select onChange={this.handleChange}>
             <option value={"created_at"}>New</option>
             <option value={"votes"}>Top Rated</option>

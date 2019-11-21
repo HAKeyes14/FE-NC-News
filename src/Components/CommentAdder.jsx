@@ -22,12 +22,11 @@ class CommentAdder extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="commentAdder" onSubmit={this.handleSubmit}>
         <label>
           Add Comment:
           <textarea
-            rows={10}
-            cols={80}
+            className="textbox"
             placeholder="Write new comment here"
             maxLength={2000}
             required
@@ -35,7 +34,7 @@ class CommentAdder extends Component {
             value={this.state.input}
           />
         </label>
-        <button>Post</button>
+        <button className="postButton">Post</button>
       </form>
     );
   }

@@ -51,14 +51,13 @@ class CommentsList extends Component {
     const { comments, isLoading } = this.state;
 
     return (
-      <div>
+      <section className="commentsDisplay">
         <CommentAdder id={this.props.id} addComment={this.addComment} />
-        <h4>Comments:</h4>
         <CommentSorter sortComments={this.sortComments} />
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <ul>
+          <ul className="commentList">
             {comments.map(comment => (
               <CommentCard
                 comment={comment}
@@ -68,7 +67,7 @@ class CommentsList extends Component {
             ))}
           </ul>
         )}
-      </div>
+      </section>
     );
   }
 }

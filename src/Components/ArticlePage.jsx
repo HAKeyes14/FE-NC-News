@@ -2,19 +2,28 @@ import React, { Component } from "react";
 import ArticleDisplayer from "./ArticleDisplayer";
 import CommentsList from "./CommentsList";
 import { getArticleById } from "../api";
+import ErrorPage from "./ErrorPage";
 
 class ArticlePage extends Component {
   state = {
     article: {},
     isLoading: true,
-    showComments: false
+    showComments: false,
+    err: null
   };
 
   componentDidMount() {
     const { id } = this.props;
-    getArticleById(id).then(article => {
-      this.setState({ article, isLoading: false });
-    });
+    getArticleById(id)
+      .then(article => {
+        this.setState({ article, isLoading: false });
+      })
+      .catch(error => {
+        console.log(error.response);
+        this.setState({
+          err: { status: error.response.status, msg: error.response.data.msg }
+        });
+      });
   }
 
   handleClick = () => {
@@ -24,21 +33,23 @@ class ArticlePage extends Component {
   };
 
   render() {
-    const { article, isLoading, showComments } = this.state;
+    const { article, isLoading, showComments, err } = this.state;
+    if (err !== null) return <ErrorPage error={err} />;
     return (
       <main>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <div>
-            <ArticleDisplayer article={article} />
-            <button onClick={this.handleClick}>
-              {showComments ? <p>Hide Comments</p> : <p>Show Comments</p>}
-            </button>
+          <>
+            <ArticleDisplayer
+              article={article}
+              handleClick={this.handleClick}
+              showComments={this.showComments}
+            />
             {showComments && (
               <CommentsList path="/comments" id={article.article_id} />
             )}
-          </div>
+          </>
         )}
       </main>
     );
