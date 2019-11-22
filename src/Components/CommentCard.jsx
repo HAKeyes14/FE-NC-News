@@ -19,7 +19,7 @@ const CommentCard = ({ comment, removeComment, loggedInUser }) => {
       </p>
       <UserDisplayer username={comment.author} />
       <p className="commentBody">{comment.body}</p>
-      <Voter votes={comment.votes} id={comment.comment_id} commArt="comments" />
+      <Voter votes={comment.votes} id={comment.article_id} commArt="comments" />
       {comment.author === loggedInUser && (
         <section className="commentDelete">
           <button onClick={handleClick}>Delete</button>
