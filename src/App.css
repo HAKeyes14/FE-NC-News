@@ -38,7 +38,7 @@
 
 .list-articles {
   list-style-type: none;
-  padding: 1px;
+  padding: 0;
   margin: 5px 10px;
   border: 0.5px solid rgb(0, 102, 181);
   border-radius: 3px;
@@ -47,7 +47,7 @@
 
 .list-topic {
   list-style-type: none;
-  padding: 1px;
+  padding: 0;
   margin: 5px 10px 5px 5px;
   border: 0.5px solid rgb(0, 102, 181);
   border-radius: 3px;
@@ -319,7 +319,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  padding: 10px 0 10px 25px;
+  padding: 20px 10px 20px 25px;
 }
 
 .article {
@@ -735,4 +735,51 @@
   background-color: rgba(153, 255, 125, 0.735);
   font-size: medium;
   font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  .homepage {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+  }
+
+  .topicsList {
+    margin-left: 5px;
+  }
+
+  .articleCard {
+    display: grid;
+    grid-template-areas:
+      "topic topic topic author author author author author author author"
+      "date date date date date date date date date date"
+      "title title title title title title title title votes votes"
+      "comments comments comments comments comments delete delete delete votes votes";
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 30px 20px 70px 25px;
+  }
+
+  .voteButton {
+    width: 50px;
+  }
+
+  .commentsArticle {
+    font-size: x-small;
+  }
+
+  .bodyArticle {
+    padding: 10px;
+  }
+
+  .commentButton button {
+    width: 60px;
+  }
+
+  .votesArticle {
+    font-size: xx-small;
+  }
+
+  .votesArticle .voteButton {
+    padding: 2px;
+  }
 }
