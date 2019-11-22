@@ -16,16 +16,25 @@ const PageSelector = ({ handleChange, handleClick, p, limit, total_count }) => {
           </button>
         )}
       </div>
-      <form className="items">
-        <label>
-          Items per page:{" "}
-          <select onChange={handleChange}>
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-          </select>
-        </label>
-      </form>
+      <div className="items">
+        <form>
+          <label>
+            Items per page:{" "}
+            <select onChange={handleChange} value={limit}>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+            </select>
+          </label>
+        </form>
+        <p>
+          Showing articles: {(p - 1) * limit + 1} -{" "}
+          {p * limit > total_count
+            ? p * limit - (p * limit - total_count)
+            : p * limit}{" "}
+          of {total_count}
+        </p>
+      </div>
     </section>
   );
 };

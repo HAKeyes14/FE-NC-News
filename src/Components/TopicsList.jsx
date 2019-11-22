@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TopicCard from "./TopicCard";
 import { getTopics } from "../api";
 import ErrorPage from "./ErrorPage";
+import loading from "../assets/loading.gif";
 
 class TopicsList extends Component {
   state = {
@@ -29,7 +30,7 @@ class TopicsList extends Component {
       <div className="topicsList">
         <h2 className="topicsTitle">Topics</h2>
         {isLoading ? (
-          <p>Loading...</p>
+          <img src={loading} alt="Loading..." height="80" />
         ) : (
           <ul className="list-topic">
             {topics.map(topic => (

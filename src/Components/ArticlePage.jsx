@@ -3,6 +3,7 @@ import ArticleDisplayer from "./ArticleDisplayer";
 import CommentsList from "./CommentsList";
 import { getArticleById } from "../api";
 import ErrorPage from "./ErrorPage";
+import loading from "../assets/loading.gif";
 
 class ArticlePage extends Component {
   state = {
@@ -38,7 +39,7 @@ class ArticlePage extends Component {
     return (
       <main>
         {isLoading ? (
-          <p>Loading...</p>
+          <img src={loading} alt="Loading..." height="80" />
         ) : (
           <>
             <ArticleDisplayer

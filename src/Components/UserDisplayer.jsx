@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { getUserById } from "../api";
+import defaultUser from "../assets/default-user.jpg";
+import loading from "../assets/loading.gif";
 
 class UserDisplayer extends Component {
   state = {
@@ -16,10 +18,8 @@ class UserDisplayer extends Component {
 
   handleError = () => {
     this.setState(currentState => {
-      const url =
-        "https://icon-library.net/images/default-user-icon/default-user-icon-4.jpg";
       const fixedUser = currentState.user;
-      fixedUser.avatar_url = url;
+      fixedUser.avatar_url = defaultUser;
       return { user: fixedUser };
     });
   };
@@ -31,7 +31,7 @@ class UserDisplayer extends Component {
       <section className="author">
         <p className="username">Posted by: {username}</p>
         {isLoading ? (
-          <p>Loading...</p>
+          <img src={loading} alt="Loading..." height="40" />
         ) : (
           <img
             src={user.avatar_url}

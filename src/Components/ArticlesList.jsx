@@ -3,6 +3,7 @@ import ArticleCard from "./ArticleCard";
 import { getArticles } from "../api";
 import ErrorPage from "./ErrorPage";
 import PageSelector from "./PageSelector";
+import loading from "../assets/loading.gif";
 
 class ArticlesList extends Component {
   state = {
@@ -15,12 +16,14 @@ class ArticlesList extends Component {
   };
 
   handleClick = direction => {
+    window.scrollTo(0, 68);
     this.setState(currentState => {
       return { p: currentState.p + direction };
     });
   };
 
   handleChange = event => {
+    window.scrollTo(0, 68);
     this.setState({ limit: event.target.value, p: 1 });
   };
 
@@ -72,7 +75,7 @@ class ArticlesList extends Component {
     return (
       <div>
         {isLoading ? (
-          <p>Loading...</p>
+          <img src={loading} alt="Loading..." height="80" />
         ) : (
           <>
             <PageSelector

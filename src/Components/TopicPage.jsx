@@ -4,7 +4,7 @@ import ArticleSorter from "./ArticleSorter";
 
 class TopicPage extends Component {
   state = {
-    sort_by: "comment_count",
+    sort_by: "votes",
     order: "desc"
   };
 

@@ -3,6 +3,7 @@ import { getCommentsByArticleId } from "../api";
 import CommentCard from "./CommentCard";
 import CommentAdder from "./CommentAdder";
 import CommentSorter from "./CommentSorter";
+import loading from "../assets/loading.gif";
 
 class CommentsList extends Component {
   state = {
@@ -59,7 +60,7 @@ class CommentsList extends Component {
         />
         <CommentSorter sortComments={this.sortComments} />
         {isLoading ? (
-          <p>Loading...</p>
+          <img src={loading} alt="Loading..." height="80" />
         ) : (
           <ul className="commentList">
             {comments.map(comment => (
