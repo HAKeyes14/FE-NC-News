@@ -18,7 +18,7 @@ const ArticleDisplayer = ({
 
   return (
     <>
-      <h3 className="topicPageTitle">{article.title}</h3>
+      <h2 className="topicPageTitle">{article.title}</h2>
       <div className="article">
         <Link to={`/topics/${article.topic}`} className="topicArticle">
           <p>nc/{article.topic}</p>

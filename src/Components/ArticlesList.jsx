@@ -16,28 +16,30 @@ class ArticlesList extends Component {
     showSuccess: false
   };
 
-  handleClick = direction => {
+  handlePageClick = direction => {
     window.scrollTo(0, 68);
     this.setState(currentState => {
       return { p: currentState.p + direction };
     });
   };
 
-  handleChange = event => {
+  handleLimitChange = event => {
     window.scrollTo(0, 68);
     this.setState({ limit: event.target.value, p: 1 });
   };
 
   componentDidMount() {
     const { p, limit } = this.state;
-    const { params } = this.props;
-    params.p = p;
-    params.limit = limit;
-    getArticles(params)
+    const { params, removeSort } = this.props;
+    const updatedParams = { ...params, p, limit };
+    getArticles(updatedParams)
       .then(({ articles, total_count }) => {
         this.setState({ articles, total_count, isLoading: false });
       })
       .catch(error => {
+        if (updatedParams.topic) {
+          removeSort();
+        }
         this.setState({
           err: { status: error.response.status, msg: error.response.data.msg }
         });
@@ -46,17 +48,25 @@ class ArticlesList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { p, limit } = this.state;
-    const { params } = this.props;
-    params.p = p;
-    params.limit = limit;
+    const { params, removeSort } = this.props;
+    const updatedParams = { ...params, p, limit };
     if (
       prevProps.params !== params ||
       prevState.p !== p ||
       prevState.limit !== limit
     ) {
-      getArticles(params).then(({ articles, total_count }) => {
-        this.setState({ articles, total_count, isLoading: false });
-      });
+      getArticles(updatedParams)
+        .then(({ articles, total_count }) => {
+          this.setState({ articles, total_count, isLoading: false });
+        })
+        .catch(error => {
+          if (updatedParams.topic) {
+            removeSort();
+          }
+          this.setState({
+            err: { status: error.response.status, msg: error.response.data.msg }
+          });
+        });
     }
   }
 
@@ -91,8 +101,8 @@ class ArticlesList extends Component {
         ) : (
           <>
             <PageSelector
-              handleClick={this.handleClick}
-              handleChange={this.handleChange}
+              handlePageClick={this.handlePageClick}
+              handleLimitChange={this.handleLimitChange}
               p={p}
               limit={limit}
               total_count={total_count}
@@ -108,8 +118,8 @@ class ArticlesList extends Component {
               ))}
             </ul>
             <PageSelector
-              handleClick={this.handleClick}
-              handleChange={this.handleChange}
+              handlePageClick={this.handlePageClick}
+              handleLimitChange={this.handleLimitChange}
               p={p}
               limit={limit}
               total_count={total_count}

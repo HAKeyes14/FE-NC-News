@@ -3,7 +3,8 @@ import { postComment } from "../api";
 
 class CommentAdder extends Component {
   state = {
-    input: ""
+    input: "",
+    isLoading: false
   };
 
   handleChange = event => {
@@ -12,15 +13,16 @@ class CommentAdder extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { id, loggedInUser } = this.props;
+    const { id, loggedInUser, addComment } = this.props;
     const { input } = this.state;
     postComment(id, input, loggedInUser).then(postedComment => {
-      this.props.addComment(postedComment);
+      addComment(postedComment);
     });
     this.setState({ input: "" });
   };
 
   render() {
+    const { input } = this.state;
     return (
       <form className="commentAdder" onSubmit={this.handleSubmit}>
         <label>
@@ -31,10 +33,12 @@ class CommentAdder extends Component {
             maxLength={2000}
             required
             onChange={this.handleChange}
-            value={this.state.input}
+            value={input}
           />
         </label>
-        <button className="postButton">Post</button>
+        <button type="submit" className="postButton">
+          Post
+        </button>
       </form>
     );
   }

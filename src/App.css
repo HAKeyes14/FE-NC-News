@@ -21,6 +21,10 @@
   color: #09d3ac;
 }
 
+button {
+  font-weight: bold;
+}
+
 .homepage {
   margin: 0 0 10px 0;
   display: grid;
@@ -91,7 +95,7 @@
 
 .topic {
   grid-area: topic;
-  font-size: x-small;
+  font-size: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -180,7 +184,7 @@
 
 .date {
   grid-area: date;
-  font-size: x-small;
+  font-size: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -190,17 +194,32 @@
 
 .author {
   grid-area: author;
-  font-size: x-small;
+  font-size: 12px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-content: center;
+  margin: 0;
   border-bottom: 0.5px solid gray;
 }
 
-.userIcon {
-  margin-top: 6px;
-  margin-left: 4px;
+.author p {
+  color: #393939;
+  margin: auto 0 auto 5px;
+  margin-right: 5px;
+}
+
+.author a {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+}
+
+.author a:hover {
+  color: rgb(0, 145, 255);
+  text-decoration: underline;
 }
 
 .articleSort {
@@ -605,23 +624,24 @@
 }
 
 .login {
-  border-bottom: 0.5px solid rgb(0, 102, 181);
-  border-radius: 3px;
+  border-bottom: 2px solid rgb(19, 53, 79);
+  border-radius: 0 0 3px 3px;
   margin: 0;
-  background-color: rgb(248, 252, 255);
-  height: 30px;
+  background-color: rgb(170, 218, 255);
+  height: 40px;
   display: flex;
   flex-direction: row;
   justify-content: left;
-  padding-left: 20px;
+  padding-left: 30px;
   position: sticky;
   top: 0;
 }
 
 .login label {
-  font-size: 12px;
+  font-size: 14px;
   height: 18px;
   margin: auto 0;
+  font-weight: 700;
 }
 
 .login select {
@@ -635,7 +655,7 @@
   margin: auto 0;
   padding: 0;
   text-align: center;
-  border: 2px solid #88ccff;
+  border: 2px solid #0060a9;
   border-radius: 3px;
   font-size: 10px;
 }
@@ -735,4 +755,51 @@
   background-color: rgba(153, 255, 125, 0.735);
   font-size: medium;
   font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  .homepage {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+  }
+
+  .topicsList {
+    margin-left: 5px;
+  }
+
+  .articleCard {
+    display: grid;
+    grid-template-areas:
+      "topic topic topic author author author author author author author"
+      "date date date date date date date date date date"
+      "title title title title title title title title votes votes"
+      "comments comments comments comments comments delete delete delete votes votes";
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 30px 20px 70px 25px;
+  }
+
+  .voteButton {
+    width: 50px;
+  }
+
+  .commentsArticle {
+    font-size: x-small;
+  }
+
+  .bodyArticle {
+    padding: 10px;
+  }
+
+  .commentButton button {
+    width: 60px;
+  }
+
+  .votesArticle {
+    font-size: xx-small;
+  }
+
+  .votesArticle .voteButton {
+    padding: 2px;
+  }
 }

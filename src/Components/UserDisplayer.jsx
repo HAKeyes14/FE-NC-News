@@ -2,18 +2,30 @@ import React, { Component } from "react";
 import { getUserById } from "../api";
 import defaultUser from "../assets/default-user.jpg";
 import loading from "../assets/loading.gif";
+import ErrorPage from "./ErrorPage";
 
 class UserDisplayer extends Component {
   state = {
     user: {},
-    isLoading: true
+    isLoading: true,
+    err: null
   };
+
+  componentWillUnmount() {
+    console.log("here");
+  }
 
   componentDidMount() {
     const { username } = this.props;
-    getUserById(username).then(user => {
-      this.setState({ user, isLoading: false });
-    });
+    getUserById(username)
+      .then(user => {
+        this.setState({ user, isLoading: false });
+      })
+      .catch(error => {
+        this.setState({
+          err: { status: error.response.status, msg: error.response.data.msg }
+        });
+      });
   }
 
   handleError = () => {
@@ -25,8 +37,9 @@ class UserDisplayer extends Component {
   };
 
   render() {
-    const { user, isLoading } = this.state;
+    const { user, isLoading, err } = this.state;
     const { username } = this.props;
+    if (err !== null) return <ErrorPage error={err} />;
     return (
       <section className="author">
         <p className="username">Posted by: {username}</p>

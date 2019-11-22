@@ -4,29 +4,43 @@ import CommentCard from "./CommentCard";
 import CommentAdder from "./CommentAdder";
 import CommentSorter from "./CommentSorter";
 import loading from "../assets/loading.gif";
+import ErrorPage from "./ErrorPage";
 
 class CommentsList extends Component {
   state = {
     comments: [],
     isLoading: true,
     sort_by: "created_at",
-    showSuccess: false
+    showSuccess: false,
+    err: null
   };
 
   componentDidMount() {
     const { id } = this.props;
-    getCommentsByArticleId(id).then(comments => {
-      this.setState({ comments, isLoading: false });
-    });
+    getCommentsByArticleId(id)
+      .then(comments => {
+        this.setState({ comments, isLoading: false });
+      })
+      .catch(error => {
+        this.setState({
+          err: { status: error.response.status, msg: error.response.data.msg }
+        });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { id } = this.props;
     const { sort_by } = this.state;
     if (prevState.sort_by !== sort_by) {
-      getCommentsByArticleId(id, sort_by).then(comments => {
-        this.setState({ comments, isLoading: false });
-      });
+      getCommentsByArticleId(id, sort_by)
+        .then(comments => {
+          this.setState({ comments, isLoading: false });
+        })
+        .catch(error => {
+          this.setState({
+            err: { status: error.response.status, msg: error.response.data.msg }
+          });
+        });
     }
   }
 
@@ -53,12 +67,13 @@ class CommentsList extends Component {
   };
 
   render() {
-    const { comments, isLoading, showSuccess } = this.state;
-    const { loggedInUser } = this.props;
+    const { comments, isLoading, showSuccess, err } = this.state;
+    const { loggedInUser, id } = this.props;
+    if (err !== null) return <ErrorPage error={err} />;
     return (
       <section className="commentsDisplay">
         <CommentAdder
-          id={this.props.id}
+          id={id}
           addComment={this.addComment}
           loggedInUser={loggedInUser}
         />

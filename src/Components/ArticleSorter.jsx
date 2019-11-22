@@ -13,9 +13,10 @@ class ArticleSorter extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
+    const { sortArticles } = this.props;
     const { order, sort_by } = this.state;
     if (prevState.order !== order || prevState.sort_by !== sort_by) {
-      this.props.sortArticles(sort_by, order);
+      sortArticles(sort_by, order);
     }
   }
 

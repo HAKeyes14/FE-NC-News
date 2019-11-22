@@ -12,8 +12,9 @@ class CommentSorter extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { sort_by } = this.state;
+    const { sortComments } = this.props;
     if (prevState.sort_by !== sort_by) {
-      this.props.sortComments(sort_by);
+      sortComments(sort_by);
     }
   }
 

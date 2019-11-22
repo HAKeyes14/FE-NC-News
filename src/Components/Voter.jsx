@@ -19,16 +19,20 @@ class Voter extends Component {
         status: 500,
         msg: "Vote could not be submitted at this time."
       };
-      this.setState(currentState => {
-        return {
-          votesAdded: currentState.votesAdded - voteNum,
-          error,
-          showError: true
-        };
-      });
-      setTimeout(() => {
-        this.setState({ showError: false });
-      }, 4000);
+      this.setState(
+        currentState => {
+          return {
+            votesAdded: currentState.votesAdded - voteNum,
+            error,
+            showError: true
+          };
+        },
+        () => {
+          setTimeout(() => {
+            this.setState({ showError: false });
+          }, 4000);
+        }
+      );
     });
   };
 

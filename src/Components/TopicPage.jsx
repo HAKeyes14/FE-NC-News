@@ -5,7 +5,12 @@ import ArticleSorter from "./ArticleSorter";
 class TopicPage extends Component {
   state = {
     sort_by: "votes",
-    order: "desc"
+    order: "desc",
+    showSort: true
+  };
+
+  removeSort = () => {
+    this.setState({ showSort: false });
   };
 
   sortArticles = (sort_by, order) => {
@@ -13,13 +18,16 @@ class TopicPage extends Component {
   };
   render() {
     const { slug } = this.props;
-    const { sort_by, order } = this.state;
+    const { sort_by, order, showSort } = this.state;
 
     return (
       <>
         <h2 className="topicPageTitle">nc/{slug}</h2>
-        <ArticleSorter sortArticles={this.sortArticles} />
-        <ArticlesList params={{ topic: slug, sort_by, order }} />
+        {showSort && <ArticleSorter sortArticles={this.sortArticles} />}
+        <ArticlesList
+          params={{ topic: slug, sort_by, order }}
+          removeSort={this.removeSort}
+        />
       </>
     );
   }

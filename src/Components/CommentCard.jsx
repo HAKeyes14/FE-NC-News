@@ -5,11 +5,9 @@ import Voter from "./Voter";
 
 const CommentCard = ({ comment, removeComment, loggedInUser }) => {
   const handleClick = () => {
-    if (comment.author === loggedInUser) {
-      deleteComment(comment.comment_id).then(() => {
-        removeComment(comment.comment_id);
-      });
-    }
+    deleteComment(comment.comment_id).then(() => {
+      removeComment(comment.comment_id);
+    });
   };
 
   return (

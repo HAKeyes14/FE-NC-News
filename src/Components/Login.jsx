@@ -30,7 +30,7 @@ class Login extends Component {
             <option value="happyamy2016">happyamy2016</option>
           </select>
         </label>
-        <button>Log In</button>
+        <button type="submit">Log In</button>
       </form>
     );
   }
