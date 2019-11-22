@@ -9,7 +9,8 @@ class CommentsList extends Component {
   state = {
     comments: [],
     isLoading: true,
-    sort_by: "created_at"
+    sort_by: "created_at",
+    showSuccess: false
   };
 
   componentDidMount() {
@@ -40,8 +41,11 @@ class CommentsList extends Component {
       const filteredComments = currentState.comments.filter(
         comment => comment.comment_id !== comment_id
       );
-      return { comments: filteredComments };
+      return { comments: filteredComments, showSuccess: true };
     });
+    setTimeout(() => {
+      this.setState({ showSuccess: false });
+    }, 3000);
   };
 
   sortComments = sort_by => {
@@ -49,7 +53,7 @@ class CommentsList extends Component {
   };
 
   render() {
-    const { comments, isLoading } = this.state;
+    const { comments, isLoading, showSuccess } = this.state;
     const { loggedInUser } = this.props;
     return (
       <section className="commentsDisplay">
@@ -73,6 +77,7 @@ class CommentsList extends Component {
             ))}
           </ul>
         )}
+        {showSuccess && <p className="successMsg">Comment deleted</p>}
       </section>
     );
   }

@@ -12,7 +12,8 @@ class ArticlesList extends Component {
     err: null,
     p: 1,
     limit: 5,
-    total_count: 0
+    total_count: 0,
+    showSuccess: false
   };
 
   handleClick = direction => {
@@ -64,12 +65,23 @@ class ArticlesList extends Component {
       const filteredArticles = currentState.articles.filter(article => {
         return article.article_id !== article_id;
       });
-      return { articles: filteredArticles };
+      return { articles: filteredArticles, showSuccess: true };
     });
+    setTimeout(() => {
+      this.setState({ showSuccess: false });
+    }, 3000);
   };
 
   render() {
-    const { articles, isLoading, err, p, limit, total_count } = this.state;
+    const {
+      articles,
+      isLoading,
+      err,
+      p,
+      limit,
+      total_count,
+      showSuccess
+    } = this.state;
     const { loggedInUser } = this.props;
     if (err !== null) return <ErrorPage error={err} />;
     return (
@@ -102,6 +114,7 @@ class ArticlesList extends Component {
               limit={limit}
               total_count={total_count}
             />
+            {showSuccess && <p className="successMsg">Article deleted</p>}
           </>
         )}
       </div>

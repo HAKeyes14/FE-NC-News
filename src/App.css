@@ -721,3 +721,18 @@
 .prev:active {
   background-color: rgb(0, 43, 75);
 }
+
+.successMsg {
+  position: fixed;
+  margin: auto;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  width: 250px;
+  height: 25px;
+  border: 2px solid rgb(155, 242, 101);
+  border-radius: 5px;
+  background-color: rgba(153, 255, 125, 0.735);
+  font-size: medium;
+  font-weight: bold;
+}
