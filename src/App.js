@@ -7,6 +7,7 @@ import ArticlePage from "./Components/ArticlePage";
 import TopicPage from "./Components/TopicPage";
 import ErrorPage from "./Components/ErrorPage";
 import Login from "./Components/Login";
+import UserPage from "./Components/UserPage";
 
 class App extends React.Component {
   state = {
@@ -27,6 +28,7 @@ class App extends React.Component {
           <Homepage path="/" loggedInUser={loggedInUser} />
           <ArticlePage path="/article/:id/*" loggedInUser={loggedInUser} />
           <TopicPage path="/topics/:slug" />
+          <UserPage path="/user/:username" />
           <ErrorPage error={{ status: 404, msg: "Page Not Found" }} default />
         </Router>
       </div>

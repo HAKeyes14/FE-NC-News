@@ -757,6 +757,11 @@ button {
   font-weight: bold;
 }
 
+.authorDisplayer {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 600px) {
   .homepage {
     display: flex;
@@ -801,5 +806,9 @@ button {
 
   .votesArticle .voteButton {
     padding: 2px;
+  }
+
+  .login {
+    padding: 0 10px;
   }
 }

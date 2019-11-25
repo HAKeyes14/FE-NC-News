@@ -1,6 +1,6 @@
 import React from "react";
 import { deleteComment } from "../api";
-import UserDisplayer from "./UserDisplayer";
+import { Link } from "@reach/router";
 import Voter from "./Voter";
 
 const CommentCard = ({ comment, removeComment, loggedInUser }) => {
@@ -15,7 +15,10 @@ const CommentCard = ({ comment, removeComment, loggedInUser }) => {
       <p className="commentDate">
         {new Date(comment.created_at).toLocaleString()}
       </p>
-      <UserDisplayer username={comment.author} />
+      <div className="author">
+        <p>Posted By:</p>{" "}
+        <Link to={`/user/${comment.author}`}> {comment.author}</Link>
+      </div>
       <p className="commentBody">{comment.body}</p>
       <Voter votes={comment.votes} id={comment.article_id} commArt="comments" />
       {comment.author === loggedInUser && (

@@ -11,10 +11,6 @@ class UserDisplayer extends Component {
     err: null
   };
 
-  componentWillUnmount() {
-    console.log("here");
-  }
-
   componentDidMount() {
     const { username } = this.props;
     getUserById(username)
@@ -38,19 +34,19 @@ class UserDisplayer extends Component {
 
   render() {
     const { user, isLoading, err } = this.state;
+    console.log(user);
     const { username } = this.props;
     if (err !== null) return <ErrorPage error={err} />;
     return (
-      <section className="author">
-        <p className="username">Posted by: {username}</p>
+      <section className="authorDisplayer">
+        <p>{username}</p>
         {isLoading ? (
-          <img src={loading} alt="Loading..." height="40" />
+          <img src={loading} alt="Loading..." height="100" />
         ) : (
           <img
             src={user.avatar_url}
             alt="user avatar"
-            height="20"
-            width="20"
+            height="100"
             className="userIcon"
             onError={this.handleError}
           />

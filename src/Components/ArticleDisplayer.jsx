@@ -1,7 +1,6 @@
 import React from "react";
 import Voter from "./Voter";
 import { Link, navigate } from "@reach/router";
-import UserDisplayer from "./UserDisplayer";
 import { deleteArticle } from "../api";
 
 const ArticleDisplayer = ({
@@ -23,7 +22,10 @@ const ArticleDisplayer = ({
         <Link to={`/topics/${article.topic}`} className="topicArticle">
           <p>nc/{article.topic}</p>
         </Link>
-        <UserDisplayer username={article.author} />
+        <div className="author">
+          <p>Posted By:</p>{" "}
+          <Link to={`/user/${article.author}`}> {article.author}</Link>
+        </div>
         <p className="dateArticle">
           {new Date(article.created_at).toLocaleString()}
         </p>
