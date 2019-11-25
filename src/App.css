@@ -962,5 +962,6 @@ button {
 
   .login button {
     width: 60px;
+    margin-left: 20px;
   }
 }
