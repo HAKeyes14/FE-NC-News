@@ -17,7 +17,7 @@ class TopicPage extends Component {
     this.setState({ sort_by, order });
   };
   render() {
-    const { slug } = this.props;
+    const { slug, loggedInUser } = this.props;
     const { sort_by, order, showSort } = this.state;
 
     return (
@@ -27,6 +27,7 @@ class TopicPage extends Component {
         <ArticlesList
           params={{ topic: slug, sort_by, order }}
           removeSort={this.removeSort}
+          loggedInUser={loggedInUser}
         />
       </>
     );

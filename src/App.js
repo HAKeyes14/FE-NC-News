@@ -27,8 +27,8 @@ class App extends React.Component {
         <Router>
           <Homepage path="/" loggedInUser={loggedInUser} />
           <ArticlePage path="/article/:id/*" loggedInUser={loggedInUser} />
-          <TopicPage path="/topics/:slug" />
-          <UserPage path="/user/:username" />
+          <TopicPage path="/topics/:slug" loggedInUser={loggedInUser} />
+          <UserPage path="/user/:username" loggedInUser={loggedInUser} />
           <ErrorPage error={{ status: 404, msg: "Page Not Found" }} default />
         </Router>
       </div>
