@@ -34,7 +34,6 @@ class UserDisplayer extends Component {
 
   render() {
     const { user, isLoading, err } = this.state;
-    console.log(user);
     const { username } = this.props;
     if (err !== null) return <ErrorPage error={err} />;
     return (
