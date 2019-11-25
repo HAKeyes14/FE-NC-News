@@ -7,12 +7,17 @@ const ArticleDisplayer = ({
   article,
   showComments,
   loggedInUser,
-  handleClick
+  handleClick,
+  toggleShowErr
 }) => {
   const handleDeleteClick = () => {
-    deleteArticle(article.article_id).then(() => {
-      navigate("/");
-    });
+    deleteArticle(article.article_id)
+      .then(() => {
+        navigate("/");
+      })
+      .catch(err => {
+        toggleShowErr();
+      });
   };
 
   return (

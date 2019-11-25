@@ -68,7 +68,7 @@ button {
     "title title title title title title title title votes votes"
     "comments comments comments comments comments delete delete delete votes votes";
   grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: 30px 70px 25px;
+  grid-template-rows: 50px 90px 40px;
   background-color: white;
 }
 
@@ -81,7 +81,7 @@ button {
   text-decoration: none;
   color: black;
   text-align: left;
-  font-size: 12px;
+  font-size: 16px;
   border-bottom: 0.5px solid gray;
   padding: 0px 20px;
   display: flex;
@@ -95,7 +95,7 @@ button {
 
 .topic {
   grid-area: topic;
-  font-size: 12px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,7 +112,7 @@ button {
 
 .comments {
   grid-area: comments;
-  font-size: x-small;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -122,7 +122,7 @@ button {
 
 .votes {
   grid-area: votes;
-  font-size: x-small;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,14 +131,14 @@ button {
 }
 
 .voteButton {
-  height: 20px;
-  width: 60px;
+  height: 25px;
+  width: 100px;
   margin: auto;
   padding: 0;
   text-align: center;
   border: 2px solid #88ccff;
   border-radius: 3px;
-  font-size: 6px;
+  font-size: 12px;
 }
 
 .voteButton:hover {
@@ -165,12 +165,13 @@ button {
 
 .delete {
   grid-area: delete;
-  height: 20px;
-  width: 80px;
+  height: 25px;
+  width: 100px;
   margin: auto;
   text-align: center;
   border: 2px solid #88ccff;
   border-radius: 3px;
+  font-size: 14px;
 }
 
 .delete:hover {
@@ -184,7 +185,7 @@ button {
 
 .date {
   grid-area: date;
-  font-size: 10px;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -194,7 +195,7 @@ button {
 
 .author {
   grid-area: author;
-  font-size: 12px;
+  font-size: 16px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -227,7 +228,7 @@ button {
   border-radius: 3px;
   margin: 5px 10px;
   background-color: rgb(248, 252, 255);
-  height: 30px;
+  height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -235,8 +236,12 @@ button {
 }
 
 .dropdown {
-  margin: auto 40px auto 0px;
-  font-size: 12px;
+  margin: auto 0px;
+  font-size: medium;
+}
+
+.dropdown select {
+  font-size: 14px;
 }
 
 .articlesTitle {
@@ -245,12 +250,14 @@ button {
   margin: 5px 10px;
   color: rgb(248, 252, 255);
   background-color: rgb(0, 118, 208);
-  height: 40px;
+  height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
   padding-left: 20px;
+  font-size: 35px;
+  font-weight: bold;
 }
 
 .header {
@@ -259,11 +266,11 @@ button {
   margin: 5px 10px 0px 10px;
   color: rgb(248, 252, 255);
   background-color: rgb(0, 43, 75);
-  height: 60px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 25px;
+  font-size: 40px;
   text-align: left;
   padding-left: 20px;
   text-decoration: none;
@@ -275,21 +282,23 @@ button {
   margin: 5px 10px 5px 5px;
   color: rgb(248, 252, 255);
   background-color: rgb(0, 118, 208);
-  height: 40px;
+  height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
   padding-left: 20px;
+  font-size: 35px;
+  font-weight: bold;
 }
 
 .topicCard {
-  height: 50px;
+  height: 80px;
   border: 2px solid #88ccff;
   border-radius: 3px;
   margin: 10px;
   background-color: white;
-  font-size: small;
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -321,7 +330,8 @@ button {
 
 .topicDescription {
   font-weight: normal;
-  font-size: 10px;
+  font-size: 14px;
+  color: rgb(67, 67, 67);
   margin: 0;
   text-align: left;
   padding-left: 10px;
@@ -333,12 +343,14 @@ button {
   margin: 5px 10px;
   color: rgb(248, 252, 255);
   background-color: rgb(0, 118, 208);
-  height: 40px;
+  height: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
   padding: 10px 0 10px 25px;
+  font-size: 35px;
+  font-weight: bold;
 }
 
 .article {
@@ -346,14 +358,14 @@ button {
   border-radius: 3px;
   margin: 0px 10px 10px 10px;
   background-color: rgb(248, 252, 255);
-  font-size: small;
+  font-size: 16px;
   display: grid;
   grid-template-areas:
     "topic author author date"
     "body body body body"
     "delete delete delete delete"
     "comments commentButton votes votes";
-  grid-template-rows: 30px auto auto 40px;
+  grid-template-rows: 50px auto auto 50px;
   grid-template-columns: repeat(4, 1fr);
 }
 
@@ -380,7 +392,7 @@ button {
   grid-area: votes;
   border-top: 0.5px solid gray;
   border-left: 0.5px solid gray;
-  font-size: small;
+  font-size: 14px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -389,7 +401,7 @@ button {
 
 .topicArticle {
   grid-area: topic;
-  font-size: x-small;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -406,7 +418,7 @@ button {
 
 .dateArticle {
   grid-area: date;
-  font-size: x-small;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -448,13 +460,13 @@ button {
 
 .commentButton button {
   height: 30px;
-  width: 100px;
+  width: 140px;
   margin: auto;
   padding: 0;
   text-align: center;
   border: 2px solid #88ccff;
   border-radius: 3px;
-  font-size: 10px;
+  font-size: 14px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -482,14 +494,14 @@ button {
 }
 
 .commentAdder {
-  margin: 10px 5px;
+  margin: 0px 5px 5px 5px;
   border: 2px solid #88ccff;
   border-radius: 3px;
   padding: 5px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: small;
+  font-size: 16px;
 }
 
 .textbox {
@@ -498,17 +510,18 @@ button {
   max-width: 100%;
   min-height: 100px;
   margin: 10px 0px;
+  font-size: 14px;
 }
 
 .postButton {
   height: 30px;
-  width: 100px;
+  width: 140px;
   margin: auto;
   padding: 0;
   text-align: center;
   border: 2px solid #88ccff;
   border-radius: 3px;
-  font-size: 10px;
+  font-size: 16px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -528,7 +541,7 @@ button {
   border-radius: 3px;
   margin: 10px 5px;
   background-color: white;
-  height: 30px;
+  height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -537,7 +550,11 @@ button {
 
 .commentDropdown {
   margin: auto 40px auto 0px;
-  font-size: 12px;
+  font-size: medium;
+}
+
+.commentDropdown select {
+  font-size: 14px;
 }
 
 .commentList {
@@ -557,14 +574,14 @@ button {
     "body body"
     "votes votes"
     "delete delete";
-  grid-template-rows: 30px auto 30px auto;
+  grid-template-rows: 50px auto 50px auto;
   grid-template-columns: 1fr 1fr;
   background-color: white;
 }
 
 .commentDate {
   grid-area: date;
-  font-size: x-small;
+  font-size: 14px;
   border-bottom: 0.5px solid gray;
   border-left: 0.5px solid gray;
   margin: 0;
@@ -582,8 +599,8 @@ button {
   text-align: left;
   padding: 30px;
   margin: 0;
-  line-height: 20px;
-  font-size: small;
+  line-height: 25px;
+  font-size: 18px;
 }
 
 .commentCard section.votes {
@@ -595,7 +612,7 @@ button {
 }
 
 .commentCard section.votes button.voteButton {
-  margin: auto 20px;
+  margin: auto 50px;
 }
 
 .commentDelete {
@@ -612,6 +629,7 @@ button {
   border: 2px solid #88ccff;
   border-radius: 3px;
   margin: 5px;
+  font-size: 14px;
 }
 
 .commentDelete button:hover {
@@ -628,7 +646,7 @@ button {
   border-radius: 0 0 3px 3px;
   margin: 0;
   background-color: rgb(170, 218, 255);
-  height: 40px;
+  height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -638,26 +656,26 @@ button {
 }
 
 .login label {
-  font-size: 14px;
-  height: 18px;
+  font-size: 16px;
+  height: 20px;
   margin: auto 0;
   font-weight: 700;
 }
 
 .login select {
   margin: auto 40px auto 0px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .login button {
-  height: 20px;
-  width: 60px;
+  height: 25px;
+  width: 80px;
   margin: auto 0;
   padding: 0;
   text-align: center;
   border: 2px solid #0060a9;
   border-radius: 3px;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .login button:hover {
@@ -674,7 +692,7 @@ button {
   border-radius: 3px;
   margin: 5px 10px 0px 10px;
   background-color: rgb(248, 252, 255);
-  height: 40px;
+  height: 50px;
   display: grid;
   grid-template-areas: "pages items";
   grid-template-columns: 1fr 1fr;
@@ -682,22 +700,27 @@ button {
 
 .items {
   grid-area: items;
-  font-size: x-small;
+  font-size: medium;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+.items form label select {
+  font-size: 14px;
+}
+
 .items p {
-  font-size: xx-small;
+  font-size: 12px;
   margin: 0;
   margin-top: 5px;
+  color: rgb(67, 67, 67);
 }
 
 .pages {
   grid-area: pages;
   border-right: 0.5px solid gray;
-  font-size: small;
+  font-size: medium;
   display: grid;
   grid-template-areas: "prev num next";
   grid-template-columns: repeat(3, 1fr);
@@ -721,14 +744,14 @@ button {
 
 .next,
 .prev {
-  height: 20px;
-  width: 40px;
+  height: 32px;
+  width: 80px;
   margin: auto;
   padding: 0;
   text-align: center;
   border: 2px solid #88ccff;
   border-radius: 3px;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .next:hover,
@@ -762,7 +785,50 @@ button {
   font-weight: bold;
 }
 
+.errPage {
+  margin: 0 10px 5px 10px;
+  border: 0.5px solid rgb(0, 102, 181);
+  border-radius: 3px;
+}
+
+.errPage h2 {
+  border-right: 0.5px solid rgb(0, 102, 181);
+  border-bottom: 0.5px solid gray;
+  background-color: rgb(205, 233, 255);
+  padding: 10px;
+  margin: 0;
+}
+
+.errPage h3 {
+  border-right: 0.5px solid rgb(0, 102, 181);
+  padding: 10px;
+  margin: 0;
+}
+
+.errPage a p {
+  border-right: 0.5px solid rgb(0, 102, 181);
+  border-top: 0.5px solid gray;
+  border-bottom: 0.25px solid rgb(0, 102, 181);
+  background-color: rgb(205, 233, 255);
+  padding: 10px;
+  margin: 0;
+  font-weight: bold;
+}
+.errPage a {
+  text-decoration: none;
+  color: black;
+}
+
+.errPage a p:hover {
+  color: rgb(0, 145, 255);
+  text-decoration: underline;
+}
+
 @media only screen and (max-width: 600px) {
+  .header {
+    font-size: 25px;
+  }
+
   .homepage {
     display: flex;
     flex-direction: column-reverse;
@@ -773,23 +839,91 @@ button {
     margin-left: 5px;
   }
 
+  .pageSelector {
+    height: 80px;
+  }
+
+  .num {
+    font-size: 12px;
+  }
+
+  .prev,
+  .next {
+    width: 40px;
+  }
+
+  .items {
+    font-size: 14px;
+  }
+
+  .items p {
+    font-size: 12px;
+  }
+
   .articleCard {
     display: grid;
     grid-template-areas:
       "topic topic topic author author author author author author author"
       "date date date date date date date date date date"
-      "title title title title title title title title votes votes"
-      "comments comments comments comments comments delete delete delete votes votes";
+      "title title title title title title title title title title"
+      "comments comments comments comments comments delete delete delete delete delete"
+      "votes votes votes votes votes votes votes votes votes votes";
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: 30px 20px 70px 25px;
+    grid-template-rows: 60px 30px auto 40px 40px;
+  }
+
+  .votes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-left: 0;
+    border-top: 0.5px solid gray;
+  }
+
+  .author {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .author p {
+    margin: 5px;
+  }
+
+  .topic {
+    padding-left: 10px;
   }
 
   .voteButton {
-    width: 50px;
+    width: 80px;
+  }
+
+  .topicPageTitle {
+    height: auto;
+  }
+
+  .article {
+    display: grid;
+    grid-template-areas:
+      "topic author author date"
+      "body body body body"
+      "delete delete delete delete"
+      "comments comments commentButton commentButton"
+      "votes votes votes votes";
+    grid-template-rows: 50px auto auto 50px 50px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .topicArticle {
+    padding-left: 5px;
+  }
+
+  .dateArticle {
+    padding-right: 5px;
   }
 
   .commentsArticle {
-    font-size: x-small;
+    font-size: 14px;
   }
 
   .bodyArticle {
@@ -797,18 +931,36 @@ button {
   }
 
   .commentButton button {
-    width: 60px;
+    width: 130px;
   }
 
   .votesArticle {
-    font-size: xx-small;
+    font-size: 14px;
   }
 
-  .votesArticle .voteButton {
-    padding: 2px;
+  .commentCard section.votes button.voteButton {
+    margin: auto 10px;
   }
 
   .login {
-    padding: 0 10px;
+    height: 60px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .login label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .login label select {
+    margin: auto 0;
+  }
+
+  .login button {
+    width: 60px;
   }
 }

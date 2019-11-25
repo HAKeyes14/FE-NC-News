@@ -13,18 +13,19 @@ class ArticlesList extends Component {
     p: 1,
     limit: 5,
     total_count: 0,
-    showSuccess: false
+    showSuccess: false,
+    showErr: false
   };
 
   handlePageClick = direction => {
-    window.scrollTo(0, 68);
+    window.scrollTo(0, 111);
     this.setState(currentState => {
       return { p: currentState.p + direction };
     });
   };
 
   handleLimitChange = event => {
-    window.scrollTo(0, 68);
+    window.scrollTo(0, 111);
     this.setState({ limit: event.target.value, p: 1 });
   };
 
@@ -71,15 +72,25 @@ class ArticlesList extends Component {
   }
 
   removeArticle = article_id => {
-    this.setState(currentState => {
-      const filteredArticles = currentState.articles.filter(article => {
-        return article.article_id !== article_id;
-      });
-      return { articles: filteredArticles, showSuccess: true };
+    this.setState(
+      currentState => {
+        const filteredArticles = currentState.articles.filter(article => {
+          return article.article_id !== article_id;
+        });
+        return { articles: filteredArticles, showSuccess: true };
+      },
+      setTimeout(() => {
+        this.setState({ showSuccess: false });
+      }, 4000)
+    );
+  };
+
+  toggleShowErr = () => {
+    this.setState({ showErr: true }, () => {
+      setTimeout(() => {
+        this.setState({ showErr: false });
+      }, 4000);
     });
-    setTimeout(() => {
-      this.setState({ showSuccess: false });
-    }, 3000);
   };
 
   render() {
@@ -90,7 +101,8 @@ class ArticlesList extends Component {
       p,
       limit,
       total_count,
-      showSuccess
+      showSuccess,
+      showErr
     } = this.state;
     const { loggedInUser } = this.props;
     if (err !== null) return <ErrorPage error={err} />;
@@ -114,6 +126,7 @@ class ArticlesList extends Component {
                   key={article.title}
                   removeArticle={this.removeArticle}
                   loggedInUser={loggedInUser}
+                  toggleShowErr={this.toggleShowErr}
                 />
               ))}
             </ul>
@@ -125,6 +138,11 @@ class ArticlesList extends Component {
               total_count={total_count}
             />
             {showSuccess && <p className="successMsg">Article deleted</p>}
+            {showErr && (
+              <p className="errorMsg">
+                Article could not be deleted at this time.
+              </p>
+            )}
           </>
         )}
       </div>

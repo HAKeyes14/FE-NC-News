@@ -10,7 +10,8 @@ class ArticlePage extends Component {
     article: {},
     isLoading: true,
     showComments: false,
-    err: null
+    err: null,
+    showError: false
   };
 
   componentDidMount() {
@@ -32,8 +33,16 @@ class ArticlePage extends Component {
     });
   };
 
+  toggleShowErr = () => {
+    this.setState({ showError: true }, () => {
+      setTimeout(() => {
+        this.setState({ showError: false });
+      }, 4000);
+    });
+  };
+
   render() {
-    const { article, isLoading, showComments, err } = this.state;
+    const { article, isLoading, showComments, showError, err } = this.state;
     const { loggedInUser } = this.props;
     if (err !== null) return <ErrorPage error={err} />;
     return (
@@ -47,7 +56,11 @@ class ArticlePage extends Component {
               handleClick={this.handleClick}
               showComments={this.showComments}
               loggedInUser={loggedInUser}
+              toggleShowErr={this.toggleShowErr}
             />
+            {showError && (
+              <p className="errorMsg">Could not delete article at this time.</p>
+            )}
             {showComments && (
               <CommentsList
                 path="/comments"

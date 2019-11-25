@@ -1,5 +1,7 @@
 # NC News front end
 
+A front end project for a news site for posting articles about particular topics. Each user is able to post, vote on, and comment on articles as well as vote on comments. Users may also delete articles or comments that they have posted.
+
 ## Links:
 
 - [Hosted front end](https://ncnews-hkeyes.netlify.com/)

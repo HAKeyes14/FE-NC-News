@@ -3,11 +3,20 @@ import { Link } from "@reach/router";
 import { deleteArticle } from "../api";
 import Voter from "./Voter";
 
-const ArticleCard = ({ article, removeArticle, loggedInUser }) => {
+const ArticleCard = ({
+  article,
+  removeArticle,
+  loggedInUser,
+  toggleShowErr
+}) => {
   const handleClick = () => {
-    deleteArticle(article.article_id).then(() => {
-      removeArticle(article.article_id);
-    });
+    deleteArticle(article.article_id)
+      .then(() => {
+        removeArticle(article.article_id);
+      })
+      .catch(error => {
+        toggleShowErr();
+      });
   };
 
   return (

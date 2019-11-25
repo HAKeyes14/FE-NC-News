@@ -12,6 +12,7 @@ class CommentsList extends Component {
     isLoading: true,
     sort_by: "created_at",
     showSuccess: false,
+    showErr: false,
     err: null
   };
 
@@ -59,15 +60,23 @@ class CommentsList extends Component {
     });
     setTimeout(() => {
       this.setState({ showSuccess: false });
-    }, 3000);
+    }, 4000);
   };
 
   sortComments = sort_by => {
     this.setState({ sort_by });
   };
 
+  toggleShowErr = () => {
+    this.setState({ showErr: true }, () => {
+      setTimeout(() => {
+        this.setState({ showErr: false });
+      }, 4000);
+    });
+  };
+
   render() {
-    const { comments, isLoading, showSuccess, err } = this.state;
+    const { comments, isLoading, showSuccess, showErr, err } = this.state;
     const { loggedInUser, id } = this.props;
     if (err !== null) return <ErrorPage error={err} />;
     return (
@@ -88,11 +97,15 @@ class CommentsList extends Component {
                 key={comment.comment_id}
                 removeComment={this.removeComment}
                 loggedInUser={loggedInUser}
+                toggleShowErr={this.toggleShowErr}
               />
             ))}
           </ul>
         )}
         {showSuccess && <p className="successMsg">Comment deleted</p>}
+        {showErr && (
+          <p className="errorMsg">Comment could not be deleted at this time.</p>
+        )}
       </section>
     );
   }

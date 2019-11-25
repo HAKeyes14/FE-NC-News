@@ -3,11 +3,20 @@ import { deleteComment } from "../api";
 import { Link } from "@reach/router";
 import Voter from "./Voter";
 
-const CommentCard = ({ comment, removeComment, loggedInUser }) => {
+const CommentCard = ({
+  comment,
+  removeComment,
+  loggedInUser,
+  toggleShowErr
+}) => {
   const handleClick = () => {
-    deleteComment(comment.comment_id).then(() => {
-      removeComment(comment.comment_id);
-    });
+    deleteComment(comment.comment_id)
+      .then(() => {
+        removeComment(comment.comment_id);
+      })
+      .catch(error => {
+        toggleShowErr();
+      });
   };
 
   return (

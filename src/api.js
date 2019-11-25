@@ -68,7 +68,7 @@ export const deleteComment = async id => {
 
 export const deleteArticle = async id => {
   const data = await axios.delete(
-    `https://nc-news-hkeyes.herokuapp.com/api/aricles/${id}`,
+    `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}`,
     {
       headers: { Authorization: `Bearer test` }
     }

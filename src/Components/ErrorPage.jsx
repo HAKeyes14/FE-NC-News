@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 
 const ErrorPage = ({ error: { status, msg } }) => {
   return (
-    <section>
+    <section className="errPage">
       <h2>{status}</h2>
       <h3>{msg}</h3>
       <Link to="/">

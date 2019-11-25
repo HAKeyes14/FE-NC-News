@@ -12,15 +12,13 @@ class UserDisplayer extends Component {
   };
 
   componentDidMount() {
-    const { username } = this.props;
+    const { username, setErr } = this.props;
     getUserById(username)
       .then(user => {
         this.setState({ user, isLoading: false });
       })
       .catch(error => {
-        this.setState({
-          err: { status: error.response.status, msg: error.response.data.msg }
-        });
+        setErr({ status: error.response.status, msg: error.response.data.msg });
       });
   }
 
