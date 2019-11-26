@@ -79,9 +79,11 @@ class ArticlesList extends Component {
         });
         return { articles: filteredArticles, showSuccess: true };
       },
-      setTimeout(() => {
-        this.setState({ showSuccess: false });
-      }, 4000)
+      () => {
+        setTimeout(() => {
+          this.setState({ showSuccess: false });
+        }, 4000);
+      }
     );
   };
 
