@@ -5,7 +5,7 @@ A front end project for a news site for posting articles about particular topics
 ## Links:
 
 - [Hosted front end](https://ncnews-hkeyes.netlify.com/)
-- [Hosted back end](https://nc-news-hkeyes.herokuapp.com/)
+- [Hosted back end](https://nc-news-hkeyes.herokuapp.com/api)
 - [Back end repository](https://github.com/HAKeyes14/nc-news)
 
 ## Installation
