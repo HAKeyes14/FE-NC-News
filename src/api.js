@@ -4,7 +4,6 @@ export const getArticles = async params => {
   const { data } = await axios.get(
     "https://nc-news-hkeyes.herokuapp.com/api/articles",
     {
-      headers: { Authorization: `Bearer test` },
       params
     }
   );
@@ -13,20 +12,14 @@ export const getArticles = async params => {
 
 export const getTopics = async () => {
   const { data } = await axios.get(
-    "https://nc-news-hkeyes.herokuapp.com/api/topics",
-    {
-      headers: { Authorization: `Bearer test` }
-    }
+    "https://nc-news-hkeyes.herokuapp.com/api/topics"
   );
   return data.topics;
 };
 
 export const getArticleById = async id => {
   const { data } = await axios.get(
-    `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}`,
-    {
-      headers: { Authorization: `Bearer test` }
-    }
+    `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}`
   );
   return data.article;
 };
@@ -35,7 +28,6 @@ export const getCommentsByArticleId = async (id, sort_by) => {
   const { data } = await axios.get(
     `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}/comments`,
     {
-      headers: { Authorization: `Bearer test` },
       params: { sort_by }
     }
   );
@@ -48,9 +40,6 @@ export const postComment = async (id, body, loggedInUser) => {
     {
       body,
       username: loggedInUser
-    },
-    {
-      headers: { Authorization: `Bearer test` }
     }
   );
   return data.comment;
@@ -58,30 +47,21 @@ export const postComment = async (id, body, loggedInUser) => {
 
 export const deleteComment = async id => {
   const data = await axios.delete(
-    `https://nc-news-hkeyes.herokuapp.com/api/comments/${id}`,
-    {
-      headers: { Authorization: `Bearer test` }
-    }
+    `https://nc-news-hkeyes.herokuapp.com/api/comments/${id}`
   );
   return data.status;
 };
 
 export const deleteArticle = async id => {
   const data = await axios.delete(
-    `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}`,
-    {
-      headers: { Authorization: `Bearer test` }
-    }
+    `https://nc-news-hkeyes.herokuapp.com/api/articles/${id}`
   );
   return data.status;
 };
 
 export const getUserById = async username => {
   const { data } = await axios.get(
-    `https://nc-news-hkeyes.herokuapp.com/api/users/${username}`,
-    {
-      headers: { Authorization: `Bearer test` }
-    }
+    `https://nc-news-hkeyes.herokuapp.com/api/users/${username}`
   );
   return data.user;
 };
@@ -91,9 +71,6 @@ export const updateVotes = async (commArt, id, votes) => {
     `https://nc-news-hkeyes.herokuapp.com/api/${commArt}/${id}`,
     {
       inc_votes: votes
-    },
-    {
-      headers: { Authorization: `Bearer test` }
     }
   );
   return data;
